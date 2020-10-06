@@ -33,12 +33,6 @@ nav .name{
     margin: auto;
 }
 
-nav a{
-    text-decoration: none;
-    color: rgb(70, 70, 70);
-    cursor: pointer;
-}
-
 nav .logo{
     display: inline-block;
     margin: auto;
@@ -48,6 +42,17 @@ nav .logo{
 
 nav .logo img{
     width: 40px;
+}
+
+nav a{
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    cursor: pointer;
+}
+
+nav a:hover{
+    text-decoration: none;
+    color: rgb(70, 70, 70);
 }
 
 nav .nav-button{
