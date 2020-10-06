@@ -33,7 +33,7 @@ nav .name{
     margin: auto;
 }
 
-nav .name a{
+nav a{
     text-decoration: none;
     color: rgb(70, 70, 70);
     cursor: pointer;
