@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" href="/css/style.css" rel="stylesheet">
+    <link rel="icon" href="/img/logo.png" />
+    <title>AirCad Your Dream Home</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo my-auto">
+          <a href="/index"><img src="/img/logo.png" /></a>
+        </div>
+        <div class="name my-auto"><a href="/index">AirCad</a></div>
+        <a class="nav-button" data-toggle="modal" data-target="#logInModal"
+          >Log In</a
+        >
+
+        <div class="modal fade" id="logInModal" role="dialog">
+          <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+              <div class="modal-header log-in-header">
+                <div id="log-in-header-content">Log In</div>
+                <button class="btn btn-light" id="close" data-dismiss="modal">
+                  X
+                </button>
+              </div>
+              <div class="modal-body log-in-body">
+                <span
+                  ><img class="icon" src="img/log in fb.png" />
+                  <a href="#">Continue with Facebook</a>
+                </span>
+
+                <span
+                  ><img class="icon" src="img/log in gg.png" />
+                  <a href="#">Continue with Google</a>
+                </span>
+
+                <div>or</div>
+                <form action="" class="log-in-form">
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                  />
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                  />
+                </form>
+              </div>
+              <div class="modal-footer log-in-footer">
+                <button class="btn btn-info">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="nav-button" data-toggle="modal" data-target="#signUpModal"
+          >Sign Up</a
+        >
+
+        <div class="modal fade" id="signUpModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header sign-up-header">
+                <div class="sign-up-header-content">
+                  Sign up with
+                  <a href="#" style="color: #3eaeca">Facebook</a> or
+                  <a href="#" style="color: #3eaeca">Google</a>
+                </div>
+                <div class="sign-up-header-content">or</div>
+              </div>
+
+              <div class="modal-body sign-up-body">
+                <form action="" class="sign-up-form">
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Email address"
+                  />
+                  <input
+                    type="text"
+                    id="fname"
+                    name="fname"
+                    placeholder="First name"
+                  />
+                  <input
+                    type="text"
+                    id="lname"
+                    name="lname"
+                    placeholder="Last name"
+                  />
+                  <input
+                    type="password"
+                    id="pwd"
+                    name="pwd"
+                    placeholder="Create a Password"
+                  />
+                  <div id="birthday">Birthday</div>
+                  <div class="notice">
+                    To sign up, you need to be at least 18.
+                  </div>
+                  <div id="birthday-cont">
+                    <select id="birthmonth" name="birthmonth">
+                      <option>Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                    <input
+                      type="number"
+                      id="birthdate"
+                      name="birthdate"
+                      min="1"
+                      max="31"
+                      placeholder="Day"
+                    />
+                    <input
+                      type="number"
+                      id="birthyear"
+                      name="birthyear"
+                      min="1920"
+                      max="2020"
+                      placeholder="Year"
+                    />
+                  </div>
+                  <div class="notice">
+                    We'll send you marketing promotions, special offers and
+                    policy updates via email.
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer sign-up-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-info">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="main-room-listing">
+      <div class="intro">Stays in Quebec City</div>
+      <div class="listing fluid-container">
+        <div class="row">
+          <div class="room col-sm">
+            <a href="#">
+              <div class="room-image"><img src="img/room1.jpg" /></div>
+              <div class="room-name">Le Renard</div>
+              <div class="room-price">CAD$64 / night</div>
+            </a>
+          </div>
+
+          <div class="room col-sm">
+            <a href="#">
+              <div class="room-image"><img src="img/room2.jpg" /></div>
+              <div class="room-name">Le Loft du Lama</div>
+              <div class="room-price">CAD$69 / night</div>
+            </a>
+          </div>
+
+          <div class="room col-sm">
+            <a href="#">
+              <div class="room-image"><img src="img/room3.jpg" /></div>
+              <div class="room-name">Charming Apartment with Terrace</div>
+              <div class="room-price">CAD$49 / night</div>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="room col-sm">
+            <a href="#">
+              <div class="room-image"><img src="img/room4.jpg" /></div>
+              <div class="room-name">Ancestral Quebec</div>
+              <div class="room-price">CAD$129 / night</div>
+            </a>
+          </div>
+
+          <div class="room col-sm">
+            <a href="#">
+              <div class="room-image"><img src="img/room5.jpg" /></div>
+              <div class="room-name">Superb Townhouse</div>
+              <div class="room-price">CAD$89 / night</div>
+            </a>
+          </div>
+
+          <div class="room col-sm">
+            <a href="#">
+              <div class="room-image"><img src="img/room6.jpg" /></div>
+              <div class="room-name">Vogue HC</div>
+              <div class="room-price">CAD$79 / night</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="links-cont">
+        <div class="block about-cont">
+          <div>ABOUT</div>
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Newsroom</a></li>
+            <li><a href="">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="block support-cont">
+          <div>SUPPORT</div>
+          <ul>
+            <li><a href="#">Help Centre</a></li>
+            <li><a href="#">Customer Service</a></li>
+            <li><a href="#">Payment & Security</a></li>
+            <li><a href="#">Trust & Safety</a></li>
+            <li><a href="#">COVID-19 Information</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-cont">
+        <div class="copyrights-cont">
+          <div class="copyrights-claim">
+            &copy; 2020 AirCad, Inc. All rights reserved
+          </div>
+          <div class="links"><a href="#">Terms</a></div>
+          <div class="links"><a href="#">Privacy</a></div>
+        </div>
+        <div class="social-cont">
+          <a href="#"><img src="/img/facebook.png" /></a>
+          <a href="#"><img src="/img/twitter.png" /></a>
+          <a href="#"><img src="/img/instagram.png" /></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
