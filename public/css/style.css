@@ -16,10 +16,11 @@ header{
     box-shadow: 3px 3px 10px rgba(223, 223, 223, 0.575);
     position: fixed;
     z-index: 1;
+    overflow: hidden;
 }
 
 nav{
-    height: auto;
+    height: 10vh;
     width: 85vw;
     margin: 0 7.5%;
     padding: 7px 0;
