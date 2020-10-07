@@ -19,7 +19,7 @@
     />
     <link type="text/css" href="/css/style.css" rel="stylesheet" />
     <link rel="icon" href="/img/logo.png" />
-    <title>AirCad Your Dream Home</title>
+    <title>DayIn Your Dream Home</title>
   </head>
   <body>
     <header>
@@ -27,13 +27,14 @@
         <div class="logo my-auto">
           <a href="/index"><img src="/img/logo.png" /></a>
         </div>
-        <div class="name my-auto"><a href="/index">AirCad</a></div>
+        <div class="name my-auto"><a href="/index">DayIn</a></div>
 
         <a class="nav-button" data-toggle="modal" data-target="#signUpModal"
-          >Sign Up</a>
+          >Sign Up</a
+        >
         <a class="nav-button" data-toggle="modal" data-target="#logInModal"
-          >Log In</a>
-        <a class="nav-button" href="/room-listing">Rooms</a>
+          >Log In</a
+        >
       </nav>
     </header>
     <!-- Log In Modal  -->
@@ -245,63 +246,66 @@
     <div class="main-homepage">
       <div class="search-section">
         <div class="form-cont">
-          <p>Find your dream destination</p>
-          <form id="search-form" class="container">
-            <div id="city-cont">
-              <label for="city">City:</label>
-              <br />
-              <input type="text" list="city" placeholder="Going to?" />
-              <datalist id="city">
-                <option>Calgary</option>
-                <option>Hamilton</option>
-                <option>Montreal</option>
-                <option>Ottawa</option>
-                <option>Toronto</option>
-                <option>Quebec</option>
-                <option>Vancouver</option>
-              </datalist>
+          <form id="search-form">
+              <div id="city-cont">
+                <label for="city">City:</label>
+                <br />
+                <input type="text" list="city" placeholder="Going to?" />
+                <datalist id="city">
+                  <option>Calgary</option>
+                  <option>Hamilton</option>
+                  <option>Montreal</option>
+                  <option>Ottawa</option>
+                  <option>Toronto</option>
+                  <option>Quebec</option>
+                  <option>Vancouver</option>
+                </datalist>
+              </div>
+
+              <div id="check-in-cont">
+                <label for="check-in">Check-in:</label>
+                <br />
+                <input
+                  type="date"
+                  id="check-in"
+                  name="check-in-date"
+                  min="2020-10-02"
+                  max="2022-01-01"
+                  placeholder="Choose date"
+                />
+              </div>
+              <div id="check-out-cont">
+                <label for="check-out">Check-out:</label>
+                <br />
+                <input
+                  type="date"
+                  id="check-out"
+                  name="check-out-date"
+                  min="2020-10-02"
+                  max="2022-01-01"
+                  placeholder="Choose date"
+                />
+              </div>
+
+              <div id="guests-cont">
+                <label for="guests">Guests:</label>
+                <br />
+                <input type="number" min="1" placeholder="Add guests" />
+              </div>
+              <div class="button-cont" >
+                <button id="search-button" type="button">
+                  <a href="/search-result"><img src="/img/search.png" /></a>
+                </button>
+              </div>
             </div>
 
-            <div id="check-in-cont">
-              <label for="check-in">Check-in:</label>
-              <br />
-              <input
-                type="date"
-                id="check-in"
-                name="check-in-date"
-                min="2020-10-02"
-                max="2022-01-01"
-                placeholder="Choose date"
-              />
-            </div>
-
-            <div id="check-out-cont">
-              <label for="check-out">Check-out:</label>
-              <br />
-              <input
-                type="date"
-                id="check-out"
-                name="check-out-date"
-                min="2020-10-02"
-                max="2022-01-01"
-                placeholder="Choose date"
-              />
-            </div>
-
-            <div id="guests">
-              <label for="guests">Guests:</label>
-              <br />
-              <input type="number" min="1" placeholder="Add guests" />
-            </div>
           </form>
-          <div class="button-cont">
-            <button type="button" class="btn btn-info">Search</button>
-          </div>
+          <!-- <p class="search-intro">Find your dream destination</p> -->
         </div>
       </div>
 
       <div class="promo-section">
-        <div class="promotion-header">Travel now</div>
+        <div class="promotion-header">Travel now with DayIn</div>
         <div class="promotion-content">
           Enjoy 15% or more off stays between now and January 4, 2021.
         </div>
@@ -310,41 +314,46 @@
       <div class="info-image-section">
         <div class="info-cont">
           <div class="info">
-            <img src="img/info3.jpg" />
-            <div class="info-header">AirCad</div>
-            <div class="info-content">
-              Millions of unique accommodations to cater for both travelers and
-              locals.
-            </div>
+            <a href="/search-result">
+              <img src="/img/info3.jpg" />
+              <div class="info-header">DayIn Toronto</div>
+              <div class="info-content">
+                Millions of unique accommodations to cater for both travelers
+                and locals coming to Toronto.
+              </div>
+            </a>
           </div>
           <div class="info">
-            <img src="img/info2.jpg" />
-            <div class="info-header">AirCad Work</div>
-            <div class="info-content">
-              Boutique hotels and homes around the world make it easy to travel
-              and collaborate with your co-workers.
-            </div>
+            <a href="/search-result">
+              <img src="/img/info2.jpg" />
+              <div class="info-header">DayIn Work</div>
+              <div class="info-content">
+                Boutique hotels and homes around the world make it easy to
+                travel and collaborate with your co-workers.
+              </div>
+            </a>
           </div>
           <div class="info">
-            <img src="img/info1.jpg" />
-            <div class="info-header">AirCad Adventures</div>
-            <div class="info-content">
-              A collection of multi-day experiences hosted by local experts.
-              Small groups are immersed in unique cultures and communities.
-            </div>
+            <a href="/search-result">
+              <img src="/img/info1.jpg" />
+              <div class="info-header">DayIn Adventures</div>
+              <div class="info-content">
+                A collection of multi-day experiences hosted by local experts.
+                Small groups are immersed in unique cultures and communities.
+              </div>
+            </a>
           </div>
         </div>
       </div>
 
       <div class="info-video-section">
-        <div class="video">
           <div class="video-content">
             Be a resident of town, not just a visitor. <br />
             Experience the lively and authentic local culture.
           </div>
-          <video controls>
-            <source src="video/airbnb.mp4" type="video/mp4" />
-          </video>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/NVaxw9j2zbQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -376,7 +385,7 @@
       <div class="footer-cont">
         <div class="copyrights-cont">
           <div class="copyrights-claim">
-            &copy; 2020 AirCad, Inc. All rights reserved
+            &copy; 2020 DayIn, Inc. All rights reserved
           </div>
           <div class="links"><a href="#">Terms</a></div>
           <div class="links"><a href="#">Privacy</a></div>

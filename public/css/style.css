@@ -11,6 +11,7 @@
 header{
     height: 10vh;
     width: 100%;
+    padding: 0;
     background-color: white;
     box-shadow: 3px 3px 10px rgba(223, 223, 223, 0.575);
     position: fixed;
@@ -20,7 +21,8 @@ header{
 nav{
     height: auto;
     width: 85vw;
-    margin: 6px 7.5%;
+    margin: 0 7.5%;
+    padding: 7px 0;
     display: inline-block;
 }
 
@@ -28,15 +30,10 @@ nav .name{
     display: inline-block;
     font-size: 1.8em;
     font-weight: bolder;
-    vertical-align: bottom;
-    height: 100%;
-    margin: auto;
 }
 
 nav .logo{
     display: inline-block;
-    margin: auto;
-    height: 100%;
     cursor: pointer;
 }
 
@@ -61,7 +58,7 @@ nav .nav-button{
     width: 90px;
     height: 40px;
     margin-left:15px;
-    margin-top:4px;
+    margin-top:10px;
     padding-top:7px;
     text-align: center;
     font-weight: 500;
@@ -167,7 +164,6 @@ nav .nav-button:hover{
 
 .modal-content button{
     width: 100px;
-    margin: 0 20px;
 }
 
 #birthday-cont{
@@ -207,12 +203,13 @@ nav .nav-button:hover{
     position: relative;
     background-color: white;
     width: 70%;
-    height: 240px;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px rgb(61, 61, 61);
+    height: 85px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 5px rgba(64, 103, 116, 0.74);
     padding:0px 20px;
     margin: auto;
-    top: 40px;
+    top: 20px;
+    background-color: #4aa7b6;
 }
 
 .form-cont p{
@@ -224,42 +221,66 @@ nav .nav-button:hover{
 
 #search-form{  
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 28% 18% 18% 14% 10%;
+    column-gap: 3%;
+    margin: 10px 20px;
+}
+
+#search-form label{
+    margin: 0;
+    padding: 0;
+    color: white;
 }
 
 #search-form input{
-    width: 90%;
-    padding-left:10px;
-}
-
-#city-cont{
-    grid-column: 1/2;
-    /* grid-row: 1/2; */
-}
-
-#check-in-cont{
-    grid-column: 2/3;
-    /* grid-row: 1/2; */
-}
-
-#check-out-cont{
-    grid-column: 3/4;
-    /* grid-row: 1/2; */
-}
-
-#guests{
-    grid-column: 4/5;
-    /* grid-row: 1/2; */
-}
-
-.button-cont{
-    padding: 30px 40%;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-left:10px;
+    border-radius: 10px;
+    border: none;
 }
 
-button{
+#search-form input:focus{
+    outline: none;
+}
+
+#search-form #city-cont, #search-form #check-in-cont, #search-form #check-out-cont, #search-form #guests-cont{
+    height: auto;
+    width: 100%;
     margin: 0;
-    width: 200px;
+    margin-right: 9px;
+}
+
+#search-form .button-cont{
+    padding: 10px 20px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+#search-form .button-cont #search-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: white;
+}
+
+#search-form .button-cont button:focus{
+    outline: none;
+}
+
+#search-form .button-cont img{
+    width: 20px;
+}
+
+.search-intro{
+    font-size: 2em;
+    font-weight:700;
+    color: #1b4266;
+    margin: 360px 0 0 730px;
+    font-family: 'Sansita Swashed', cursive;
 }
 
 .promo-section{
@@ -313,6 +334,11 @@ button{
     margin-top: 15%;
 }
 
+.info a{
+    text-decoration: none;
+    color:rgb(70, 70, 70);
+}
+
 .info img{
     width: 100%;
     height: auto;
@@ -330,15 +356,12 @@ button{
 }
 
 .info-video-section{
-    margin-top: 100px;
-    width: 100%;
-}
-
-.info-video-section .video{
     position: relative;
+    width: 85vw;
+    height: 50vh;
     display: flex;
     margin: 0 7.5%;
-    width: 85vw;
+    margin-top: 100px;
 }
 
 .info-video-section .video-content{
@@ -351,12 +374,18 @@ button{
     font-size: 1.5em;
     font-style: italic;
 }
-.info-video-section video{
+.info-video-section .video{
     display: inline-block;
     float: right;
     width: 50%;
     height: 50vh;
-    margin: auto;
+    overflow: hidden;
+}
+
+iframe{
+    height: 50vh;
+    width: 100%;
+    margin: 0;
 }
 
 footer{
@@ -473,13 +502,215 @@ footer{
 .room a:hover .room-name{
     color: #1b97aa;
 }
-.room img{
+.room-image img{
     width: 100%;
-    height: auto;
+    height: 35vh;
 }
 
 .room-name{
     margin-top: 10px;
     font-weight: 500;
+    font-size: 1.2em;
+}
+
+.room-description{
     font-size: 1.1em;
 }
+
+.room-location{
+    font-weight: 100;
+}
+
+.room-price, .room-rating{
+    display: inline-block;
+}
+
+.room-price{
+    font-size: 1.2em;
+    font-weight: 500;
+    color:#db411b;
+    float: right;
+}
+.room-rating img{
+    width: 15px;
+}
+
+/* /room-details page styling */
+
+.main-room-details{
+    width: 85vw;
+    margin: 10vh 7.5%;  
+}
+
+.room-main-info{
+    margin: 20px 0;
+}
+
+.room-main-info .room-name{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.room-main-info .room-rating, .room-location{
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 20px;
+}
+
+.room-main-info .room-images{
+    border: 0.5px solid rgb(209, 209, 209);
+    height: auto;
+    margin-top: 15px;
+}
+
+.room-main-info .room-images img{
+    width: 100%;
+    height: 70vh;
+}
+
+.room-more-info .room-description-1{
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.room-more-info{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    /* column-gap: 50px; */
+    grid-template-areas:    
+    "desc reserve"
+    "intro reserve"
+    "amenities reserve" ;
+}
+
+#room-description, #room-intro, #room-amenities, #room-reserve{
+    height: auto;
+    margin-top: 20px;
+}
+
+#room-description{
+    grid-area: desc;
+}
+
+#room-intro{
+    grid-area: intro;
+}
+
+#room-amenities{
+    grid-area: amenities;
+}
+
+#room-amenities ul{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#room-amenities li{
+    margin-top: 5px;
+}
+
+#room-amenities button{
+    margin: 20px 0;
+}
+
+#amenities-header-content{
+    font-size: 1.4em;
+    font-weight: 700;
+    margin: 7px 3% 7px 40%;
+}
+
+.amenities-body div{
+    text-align: center;
+    font-weight: 700;
+}
+
+.amenities-body li{
+    margin: 5px 0 0 40px;
+}
+
+#room-reserve{
+    width: 85%;
+    grid-area: reserve;
+    position: relative;
+    margin:0 auto;
+}
+
+.reserve-form{
+    margin: 10px;
+    border: 0.1px solid #b4b4b4;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(161, 161, 161, 0.575);
+}
+
+#room-reserve .room-price{
+    display: inline-block;
+    font-size: 1.2em;
+    color: rgb(70, 70, 70);
+    float: left;
+    margin: 20px 10%;
+}
+
+#room-reserve .room-rating{
+    display: inline-block;
+    float: right;
+    margin: 20px 10%;
+}
+
+#room-reserve #check-in-cont, #check-out-cont, #guests-cont{
+    display: block;
+    margin: 20px 10% 0 10%;
+    width: 80%;
+}
+
+.reserve-form input{
+    width: 100%;
+    margin:0px 0;
+}
+
+.reserve-form input:focus{
+    outline-color: #1b97aa;
+}
+
+.total-title, .total-price{
+    display: inline-block;
+    margin: 20px 10% 0 10%;
+}
+
+.total-title{
+    float: left;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.total-price{
+    float:right;
+    font-weight: 500;
+    font-size: 1.2em;
+    text-decoration: underline;
+    color: #db411b;
+}
+
+.reserve-form .button-cont{
+    width: 80%;
+    margin: 20px 10%;
+    padding: 0;
+    background-color: antiquewhite;
+}
+
+#reserve-button{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#reserve-button a{
+    text-decoration: none;
+    color: white;
+
+}
+
+
+

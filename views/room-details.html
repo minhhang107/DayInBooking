@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" href="/css/style.css" rel="stylesheet" />
+    <link rel="icon" href="/img/logo.png" />
+    <title>DayIn Your Dream Home</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo my-auto">
+          <a href="/index"><img src="/img/logo.png" /></a>
+        </div>
+        <div class="name my-auto"><a href="/index">DayIn</a></div>
+
+        <a class="nav-button" data-toggle="modal" data-target="#signUpModal"
+          >Sign Up</a
+        >
+        <a class="nav-button" data-toggle="modal" data-target="#logInModal"
+          >Log In</a
+        >
+      </nav>
+    </header>
+
+    <!-- Log In Modal  -->
+    <div class="modal fade" id="logInModal" role="dialog">
+      <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+          <div class="modal-header log-in-header">
+            <div id="log-in-header-content">Log In</div>
+            <button
+              class="btn btn-light"
+              id="close"
+              data-backdrop="false"
+              data-dismiss="modal"
+            >
+              X
+            </button>
+          </div>
+          <div class="modal-body log-in-body">
+            <span
+              ><img class="icon" src="img/log in fb.png" />
+              <a href="#">Continue with Facebook</a>
+            </span>
+
+            <span
+              ><img class="icon" src="img/log in gg.png" />
+              <a href="#">Continue with Google</a>
+            </span>
+
+            <div>or</div>
+            <form action="" class="log-in-form">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Username"
+              />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+              />
+            </form>
+          </div>
+          <div class="modal-footer log-in-footer">
+            <button class="btn btn-info">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signUpModal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header sign-up-header">
+            <div class="sign-up-header-content">
+              Sign up with
+              <a href="#" style="color: #3eaeca">Facebook</a> or
+              <a href="#" style="color: #3eaeca">Google</a>
+            </div>
+            <div class="sign-up-header-content">or</div>
+          </div>
+
+          <div class="modal-body sign-up-body">
+            <form action="" class="sign-up-form">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Email address"
+              />
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="First name"
+              />
+              <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Last name"
+              />
+              <input
+                type="password"
+                id="pwd"
+                name="pwd"
+                placeholder="Create a Password"
+              />
+              <div id="birthday">Birthday</div>
+              <div class="notice">To sign up, you need to be at least 18.</div>
+              <div id="birthday-cont">
+                <select id="birthmonth" name="birthmonth">
+                  <option>- Month -</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
+                <select id="birthdate" name="birthdate">
+                  <option>- Day -</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+                <select id="birthyear" name="birthyear">
+                  <option>- Year -</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                  <option value="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option>
+                  <option value="2007">2007</option>
+                  <option value="2006">2006</option>
+                  <option value="2005">2005</option>
+                  <option value="2004">2004</option>
+                  <option value="2003">2003</option>
+                  <option value="2002">2002</option>
+                  <option value="2001">2001</option>
+                  <option value="2000">2000</option>
+                  <option value="1999">1999</option>
+                  <option value="1998">1998</option>
+                  <option value="1997">1997</option>
+                  <option value="1996">1996</option>
+                  <option value="1995">1995</option>
+                  <option value="1994">1994</option>
+                  <option value="1993">1993</option>
+                  <option value="1992">1992</option>
+                  <option value="1991">1991</option>
+                  <option value="1990">1990</option>
+                  <option value="1989">1989</option>
+                  <option value="1988">1988</option>
+                  <option value="1987">1987</option>
+                  <option value="1986">1986</option>
+                  <option value="1985">1985</option>
+                  <option value="1984">1984</option>
+                  <option value="1983">1983</option>
+                  <option value="1982">1982</option>
+                  <option value="1981">1981</option>
+                  <option value="1980">1980</option>
+                </select>
+              </div>
+              <div class="notice">
+                We'll send you marketing promotions, special offers and policy
+                updates via email.
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer sign-up-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-backdrop="false"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-info">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-room-details">
+      <div class="room-main-info">
+        <div class="room-name">Clean & Cozy Studio, Downtown Toronto</div>
+        <div class="room-rating"><img src="/img/star.png" />4.57</div>
+        <div class="room-location">Toronto, Ontario, Canada</div>
+        <div class="room-location">Toronto, Ontario, Canada</div>
+        <div class="room-images">
+          <div id="room-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li
+                data-target="#room-carousel"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#room-carousel" data-slide-to="1"></li>
+              <li data-target="#room-carousel" data-slide-to="2"></li>
+              <li data-target="#room-carousel" data-slide-to="3"></li>
+              <li data-target="#room-carousel" data-slide-to="4"></li>
+              <li data-target="#room-carousel" data-slide-to="5"></li>
+              <li data-target="#room-carousel" data-slide-to="6"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  class="d-block w-100"
+                  src="img/room1.jpg"
+                  alt="First slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="img/room11.jpg"
+                  alt="Second slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="img/room12.jpg"
+                  alt="Third slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="img/room13.jpg"
+                  alt="Fourth slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="img/room14.jpg"
+                  alt="Fifth slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="img/room15.jpg"
+                  alt="Sixth slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="img/room16.jpg"
+                  alt="Seventh slide"
+                />
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#room-carousel"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#room-carousel"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-more-info">
+        <div id="room-description">
+          <div class="room-description-1">Entire condominium</div>
+          <div class="room-description-2">
+            2 guests - 1 bedroom - 1 bed - 1 bath
+          </div>
+          <hr />
+        </div>
+        <div id="room-intro">
+          <div>
+            News: We added blackout curtains to ensure our guests get good
+            sleep:) Please see the pictures.
+            <br />
+            Unit: Small and cozy. It has everything you need for your stay and
+            it is close to everywhere you need to go because it is right on
+            Yonge Street.
+            <br />
+            Location: 5 mins walk to Union station and King subway station. 2
+            mins to Harbourfront. 2 mins to Scotiabank Arena, so you can walk to
+            our place from a concert, Maple Leafs or Raptors game. 10 mins away
+            from U of T, Ryerson and George Brown College.
+          </div>
+          <br />
+          <hr />
+        </div>
+        <div id="room-amenities">
+          <ul>
+            Amenities
+            <li>Elevator</li>
+            <li>Wifi</li>
+            <li>Kitchen</li>
+            <li>Laptop-friendly workspace</li>
+            <li>TV</li>
+            <li>Iron</li>
+            <li>Dryer</li>
+            <li>Washer</li>
+            <li>Essentials</li>
+          </ul>
+          <button
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#amenitiesModal"
+          >
+            Show all 20 amenities
+          </button>
+          <hr />
+        </div>
+        <div id="room-reserve">
+          <form action="" class="reserve-form">
+            <div class="room-price"><b>$80</b> / night</div>
+            <div class="room-rating"><img src="/img/star.png" />4.57</div>
+            <br /><br />
+            <div id="check-in-cont">
+              <label for="check-in">Check-in:</label>
+              <br />
+              <input
+                type="date"
+                id="check-in"
+                name="check-in-date"
+                min="2020-10-02"
+                max="2022-01-01"
+                placeholder="Choose date"
+              />
+            </div>
+
+            <div id="check-out-cont">
+              <label for="check-out">Check-out:</label>
+              <br />
+              <input
+                type="date"
+                id="check-out"
+                name="check-out-date"
+                min="2020-10-02"
+                max="2022-01-01"
+                placeholder="Choose date"
+              />
+            </div>
+
+            <div id="guests-cont">
+              <label for="guests">Guests:</label>
+              <br />
+              <input type="number" min="1" placeholder="Add guests" />
+            </div>
+            <div class="room-total-price">
+              <div class="total-title">Total</div>
+              <div class="total-price">$240</div>
+            </div>
+            <div class="button-cont">
+            <button id="reserve-button" class="btn btn-info">
+              <a href="/book-now">Reserve</a>
+            </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="amenitiesModal" role="dialog">
+      <div class="modal-dialog modal-dialog-scrollable" role="dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div id="amenities-header-content">Amenities</div>
+            <button class="btn btn-light" id="close" data-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="modal-body amenities-body">
+            <div class="amenities-category">Basic</div>
+            <ul>
+              <li>Wifi</li>
+              <hr />
+              <li>Laptop-friendly workspace</li>
+              <hr />
+              <li>TV</li>
+              <hr />
+              <li>Iron</li>
+              <hr />
+              <li>Dryer</li>
+              <hr />
+              <li>Washer</li>
+              <hr />
+              <li>Essentials</li>
+              <hr />
+              <li>Heating</li>
+              <hr />
+              <li>Air Conditioning</li>
+              <hr />
+              <li>Hot Water</li>
+            </ul>
+
+            <div class="amenities-category">Facilities</div>
+            <ul>
+              <li>Elevator</li>
+              <hr />
+              <li>Parking on premises</li>
+              <hr />
+            </ul>
+
+            <div class="amenities-category">Dining</div>
+            <ul>
+              <li>Kitchen</li>
+              <hr />
+              <li>Refrigerator</li>
+              <hr />
+              <li>Dishwasher</li>
+              <hr />
+              <li>Microwave</li>
+              <hr />
+              <li>Dishes and Silverware</li>
+              <hr />
+              <li>Stove</li>
+              <hr />
+              <li>Oven</li>
+            </ul>
+          </div>
+          <div class="modal-footer amenities-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="links-cont">
+        <div class="block about-cont">
+          <div>ABOUT</div>
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Newsroom</a></li>
+            <li><a href="">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="block support-cont">
+          <div>SUPPORT</div>
+          <ul>
+            <li><a href="#">Help Centre</a></li>
+            <li><a href="#">Customer Service</a></li>
+            <li><a href="#">Payment & Security</a></li>
+            <li><a href="#">Trust & Safety</a></li>
+            <li><a href="#">COVID-19 Information</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-cont">
+        <div class="copyrights-cont">
+          <div class="copyrights-claim">
+            &copy; 2020 DayIn, Inc. All rights reserved
+          </div>
+          <div class="links"><a href="#">Terms</a></div>
+          <div class="links"><a href="#">Privacy</a></div>
+        </div>
+        <div class="social-cont">
+          <a href="#"><img src="/img/facebook.png" /></a>
+          <a href="#"><img src="/img/twitter.png" /></a>
+          <a href="#"><img src="/img/instagram.png" /></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
