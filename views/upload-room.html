@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" href="/css/style.css" rel="stylesheet" />
+    <link rel="icon" href="/img/logo.png" />
+    <title>DayIn Your Dream Home</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo my-auto">
+          <a href="/index"><img src="/img/logo.png" /></a>
+        </div>
+        <div class="name my-auto"><a href="/index">DayIn</a></div>
+
+        <a class="nav-button">Log Out</a>
+      </nav>
+    </header>
+
+    <div class="main-upload-page">
+      <div class="head1">Start listing your place</div>
+      <div class="list-room-info">
+        <form action="" id="list-room-form">
+          <div class="list-cont">
+            <div class="head3">What kind of place do you have?</div>
+            <label for="property-type">What is the type of your property?</label
+            ><br />
+            <select id="property-type" name="property-type">
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="unique space">Unique space</option>
+              <option value="boutique hotel">Boutique hotel</option>
+            </select>
+            <select id="list-type-of-room" name="list-type-of-room">
+              <option value="entire room">Entire place</option>
+              <option value="private room">Private room</option>
+              <option value="shared room">Shared room</option>
+            </select>
+            <br />
+            <label for="list-no-of-guests"
+              >How many guests can stay at your place?</label
+            ><br />
+            <select id="list-no-of-guests" name="list-no-of-guests">
+              <option value="1">for 1 guest</option>
+              <option value="2">for 2 guests</option>
+              <option value="3">for 3 guests</option>
+              <option value="4">for 4 guests</option>
+              <option value="5">for 5 guests</option>
+              <option value="6">for 6 guests</option>
+              <option value="7">for 7 guests</option>
+              <option value="8">for 8 guests</option>
+              <option value="9">for 9 guests</option>
+              <option value="10">for 10 guests</option>
+            </select>
+            <br />
+            <label for="list-bedroom">How many beds can guests use?</label>
+            <br />
+            <input type="number" id="list-bedroom" name="list-bedroom" placeholder="0" />
+            <br />
+            <label for="list-bathroom"
+              >How many bathrooms can guests use?</label
+            >
+            <br />
+            <input type="number" id="list-bathroom" name="list-bathroom" placeholder="0"/>
+            <br />
+          </div>
+          <div class="list-cont">
+            <div class="head3">Where's your place located?</div>
+            <label for="list-street">Street address</label>
+            <br />
+            <input
+              type="text"
+              id="list-street"
+              name="list-street"
+              placeholder="e.g. 1 King Street West"
+            />
+            <br />
+            <label for="list-apt">Apt / suite</label>
+            <br />
+            <input
+              type="text"
+              id="list-apt"
+              name="list-apt"
+              placeholder="e.g. 1300"
+            />
+            <br />
+            <label for="list-city">City</label>
+            <br />
+            <input
+              type="text"
+              id="list-city"
+              name="list-city"
+              placeholder="e.g.Toronto"
+            />
+            <br />
+            <label for="list-state">State</label>
+            <br />
+            <input
+              type="text"
+              id="list-state"
+              name="list-state"
+              placeholder="e.g. Ontario"
+            />
+            <br />
+            <label for="list-postal-code">Postal code</label>
+            <br />
+            <input
+              type="text"
+              id="list-postal-code"
+              name="list-postal-code"
+              placeholder="e.g. A1A 1A1"
+            />
+            <br />
+          </div>
+          <div class="list-cont">
+            <label class="head3" for="list-amenities"
+              >What amenities do you offer?</label
+            >
+            <br />
+            <input
+              type="checkbox"
+              name="list-amenities"
+              value="wifi"
+            />Wifi<br />
+            <input type="checkbox" name="list-amenities" value="tv" />TV<br />
+            <input
+              type="checkbox"
+              name="list-amenities"
+              value="heat"
+            />Heat<br />
+            <input
+              type="checkbox"
+              name="list-amenities"
+              value="air conditioning"
+            />Air conditioning<br />
+            <input
+              type="checkbox"
+              name="list-amenities"
+              value="shampoo"
+            />Shampoo<br />
+            <input
+              type="checkbox"
+              name="list-amenities"
+              value="hair dryer"
+            />Hair dryer<br />
+            <input
+              type="checkbox"
+              name="list-amenities"
+              value="closet"
+            />Closet<br />
+          </div>
+          <div class="list-cont">
+            <div class="list-photos head3">Upload photos of your place</div>
+            <div class="custom-file" id="list-photo-cont">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="list-room-photo"
+                name="list-room-photo"
+              />
+              <label class="custom-file-label" for="list-room-photo">Choose your photos</label>
+            </div>
+          </div>
+          <div class="list-cont">
+            <div class="list-price head3">
+              What is the price for one night at your place?
+            </div>
+            <input
+              type="text"
+              id="list-price"
+              name="list-price"
+              placeholder="e.g. $100"
+            />
+          </div>
+          <div class="list-cont">
+            <button class="btn btn-info" id="list-button">List your room</button>
+          </div>
+        </form>
+      </div>
+      <div class="side-photo">
+        <img src="/img/upload.jpg"/>
+      </div>
+    </div>
+
+    <footer>
+      <div class="links-cont">
+        <div class="block about-cont">
+          <div>ABOUT</div>
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Newsroom</a></li>
+            <li><a href="">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="block support-cont">
+          <div>SUPPORT</div>
+          <ul>
+            <li><a href="#">Help Centre</a></li>
+            <li><a href="#">Customer Service</a></li>
+            <li><a href="#">Payment & Security</a></li>
+            <li><a href="#">Trust & Safety</a></li>
+            <li><a href="#">COVID-19 Information</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-cont">
+        <div class="copyrights-cont">
+          <div class="copyrights-claim">
+            &copy; 2020 DayIn, Inc. All rights reserved
+          </div>
+          <div class="links"><a href="#">Terms</a></div>
+          <div class="links"><a href="#">Privacy</a></div>
+        </div>
+        <div class="social-cont">
+          <a href="#"><img src="/img/facebook.png" /></a>
+          <a href="#"><img src="/img/twitter.png" /></a>
+          <a href="#"><img src="/img/instagram.png" /></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

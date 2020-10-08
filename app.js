@@ -29,6 +29,10 @@ app.get('/upload-room', function(req, res){
     res.sendFile(path.join(__dirname,"/views/upload-room.html"))
 });
 
+app.get('/confirm', function(req, res){
+    res.sendFile(path.join(__dirname,"/views/confirm.html"))
+});
+
 
 
 app.listen(HTTP_PORT);

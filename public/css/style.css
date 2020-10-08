@@ -125,6 +125,11 @@ nav .nav-button:hover{
     width: 50px;
 }
 
+.log-in-footer #continue-button a{
+    text-decoration: none;
+    color: white;
+}
+
 .sign-up-header{
     display: block;
 }
@@ -539,8 +544,8 @@ footer{
 /* /room-details page styling */
 
 .main-room-details{
-    width: 85vw;
-    margin: 10vh 7.5%;  
+    width: 65vw;
+    margin: 10vh 17.5%;  
 }
 
 .room-main-info{
@@ -571,17 +576,17 @@ footer{
 }
 
 .room-more-info .room-description-1{
-    margin-top: 20px;
     font-size: 1.3em;
     font-weight: 500;
 }
 
 .room-more-info{
     height: 100%;
+    margin-top:40px;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto;
-    /* column-gap: 50px; */
+    column-gap: 5%;
     grid-template-areas:    
     "desc reserve"
     "intro reserve"
@@ -590,7 +595,7 @@ footer{
 
 #room-description, #room-intro, #room-amenities, #room-reserve{
     height: auto;
-    margin-top: 20px;
+    margin-top:0;
 }
 
 #room-description{
@@ -627,6 +632,7 @@ footer{
 .amenities-body div{
     text-align: center;
     font-weight: 700;
+    margin-bottom:20px;
 }
 
 .amenities-body li{
@@ -634,17 +640,17 @@ footer{
 }
 
 #room-reserve{
-    width: 85%;
+    width: 100%;
     grid-area: reserve;
     position: relative;
-    margin:0 auto;
+    margin:0;
 }
 
 .reserve-form{
     margin: 10px;
     border: 0.1px solid #b4b4b4;
     border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(161, 161, 161, 0.575);
+    box-shadow:rgba(0, 0, 0, 0.12) 0px 6px 10px
 }
 
 #room-reserve .room-price{
@@ -710,8 +716,230 @@ footer{
 #reserve-button a{
     text-decoration: none;
     color: white;
-
 }
 
+/* book-now page */
+.main-book-now{
+    width: 65%;
+    margin: 10vh 17.5%;
+    position: relative;
+}
 
+.main-book-now #left-column, #right-column{
+    margin-top: 40px;
+}
 
+.main-book-now .edit-button{
+    display: inline-block;
+    float: right;
+    border: none;
+    background-color: white;
+    text-decoration: underline;
+}
+
+.main-book-now .edit-button:focus{
+    outline: none;
+}
+
+.date-guest-info-cont, .payment-info-cont, .message-for-host-cont{
+    margin:20px 0;
+}
+.head1{
+    font-size: 2em;
+    font-weight:800;
+}
+
+.head3{
+    font-size: 1.5em;
+    font-weight:500;
+}
+
+.head6{
+    font-size: 1.1em;
+    font-weight:500;
+}
+
+.main-book-now input, .main-book-now select{
+    height: 50px;
+    border-radius: 10px;
+    border: 0.1px solid rgb(192, 192, 192);
+    margin: 10px 0;
+    padding: 10px 20px;
+}
+
+.main-book-now input:focus, select:focus{
+    outline-color:#1b97aa;
+}
+
+.main-book-now .row{
+    margin: 0 1px;
+}
+
+.main-book-now .col{
+    margin: 5px;
+}
+
+.main-book-now textarea{
+    width: 85%;
+    height: 25vh;
+}
+
+.main-book-now .agreement{
+    font-size: 0.9em;
+}
+
+.main-book-now #book-button{
+    width: 40%;
+    margin: 20px auto;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.main-book-now #book-button a{
+    text-decoration: none;
+    color: white;
+}
+
+.main-book-now #right-column{
+    position: relative;
+}
+
+.main-book-now .right-column-cont{
+    width: 100%;
+    margin: 10px;
+    border: 0.1px solid #b4b4b4;
+    border-radius: 10px;
+    box-shadow:rgba(0, 0, 0, 0.12) 0px 6px 10px;
+}
+
+.main-book-now .room-info-cont, .room-price-cont, .cancel{
+    margin: 30px;
+}
+.main-book-now .room-info-img img{
+    width: 100%;
+    margin: 0;
+}
+
+.main-book-now .room-info-name{
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.main-book-now .room-info-rating{
+    float: right;
+    display: inline-block;
+}
+
+.main-book-now .price, .price-calculation, .service-fee, .total{
+    display: inline-block;
+}
+
+.main-book-now .price{
+    float: right;
+}
+
+.main-book-now .total{
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.main-book-now .total-price{
+    font-weight: 500;
+    font-size: 1.2em;
+    text-decoration: underline;
+    color: #db411b;
+    margin: 0;
+}
+
+.main-book-now .cancel{
+    font-weight: 600;
+    font-size: 1.1em;
+}
+.confirm-body img{
+    width: auto;
+    height: 40vh;
+    margin: auto;
+}
+
+.main-confirm #left-column{
+    margin-top: 100px;
+}
+.confirm-message{
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: auto;
+}
+
+.main-upload-page{
+    width: 65%;
+    margin: 10vh 17.5%;
+    position: relative;
+}
+
+.main-upload-page .head1{
+    margin-top:40px;
+}
+
+.main-upload-page .list-cont{
+    margin: 40px 0;
+}
+
+.main-upload-page label{
+    margin-top: 20px;
+    margin-bottom:0;
+}
+.main-upload-page input, .main-upload-page select{
+    height: 50px;
+    width: 50%;
+    border-radius: 10px;
+    border: 0.1px solid rgb(192, 192, 192);
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.main-upload-page input[type="checkbox"]{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.main-upload-page input:focus, .main-upload-page select:focus{
+    outline-color: #7ecad6;
+}
+
+.main-upload-page #property-type{
+    margin-bottom: 10px;
+}
+
+.main-upload-page #list-room-photo, #list-price{
+    margin-top: 20px;
+}
+
+#list-photo-cont{
+    height: auto;
+    width: 50%;
+}
+
+#list-button{
+    width: 200px;
+    height: 60px;
+    font-size: 1.3em;
+    margin-top: 20px;
+}
+
+.list-room-info{
+    display: inline-block;
+    width: 50%;
+}
+
+.side-photo{
+    display: inline-block;
+    float: right;
+    width: 50%;
+    margin-top:20px;
+}
+
+.side-photo img{
+    width: 100%;
+    height: auto;
+}
