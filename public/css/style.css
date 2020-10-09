@@ -61,11 +61,10 @@ nav a:hover{
 nav .nav-button{
     display: inline-block;
     float: right;
-    width: 90px;
-    height: 40px;
-    margin-left:15px;
-    margin-top:10px;
-    padding-top:7px;
+    width:10%;
+    height: 70%;
+    margin: 7px 0 7px 10px;
+    padding-top:5px;
     text-align: center;
     font-weight: 500;
     border: 0.1px solid white;
@@ -307,20 +306,20 @@ nav .nav-button:hover{
 
 .promotion-header{
     position: relative;
-    top:50px;
-    left: 50px;
+    top:22%;
+    left: 5%;
     font-family: 'Sansita Swashed', cursive;
-    font-size: 3em;
+    font-size: 3.5vw;
     font-weight: 900;
     color: white;
 }
 
 .promotion-content{
     position: relative;
-    top:60px;
-    left: 50px;
+    top:28%;
+    left: 5%;
     font-family: 'Sansita Swashed', cursive;
-    font-size: 1.2em;
+    font-size: 1.4vw;
     color: white;
 }
 
@@ -893,20 +892,6 @@ footer{
     font-weight: 600;
     font-size: 1.1em;
 }
-.confirm-body img{
-    width: auto;
-    height: 40vh;
-    margin: auto;
-}
-
-.main-confirm #left-column{
-    margin-top: 100px;
-}
-.confirm-message{
-    font-size: 1.2em;
-    font-weight: 500;
-    margin: auto;
-}
 
 .main-upload-page{
     width: 65%;
@@ -926,6 +911,7 @@ footer{
     margin-top: 20px;
     margin-bottom:0;
 }
+
 .main-upload-page input, .main-upload-page select{
     height: 50px;
     width: 50%;
@@ -980,4 +966,66 @@ footer{
 .side-photo img{
     width: 100%;
     height: auto;
+}
+
+.main-confirm #left-column, #right-column{
+    margin-top:10%;
+}
+
+.confirm-message{
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.confirm-right-column .right-column-cont{
+    width: 80%;
+    margin: 10%;
+    margin-top: 0;
+    border: 0.1px solid #b4b4b4;
+    border-radius: 10px;
+    box-shadow:rgba(0, 0, 0, 0.12) 0px 6px 10px;
+}
+
+.confirm-right-column .room-info-cont, .room-price-cont, .cancel{
+    margin: 20px;
+}
+
+.confirm-right-column .room-info-img img{
+    width: 50%;
+    margin: 0;
+}
+
+.confirm-right-column .room-info-name{
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.confirm-right-column .room-info-description-2{
+    display: inline-block;
+}
+
+.confirm-right-column .room-info-rating{
+    float: right;
+    display: inline-block;
+}
+.confirm-right-column .head3{
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.confirm-right-column .total{
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.confirm-right-column .total-price{
+    font-weight: 600;
+    font-size: 1.1em;
+    text-decoration: underline;
+    color: #db411b;
+    margin: 0;
+}
+
+.main-book-now .cancel{
+    font-weight: 600;
+    font-size: 1.1em;
 }
