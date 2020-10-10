@@ -972,9 +972,23 @@ footer{
     margin-top:10%;
 }
 
+.main-confirm #left-column{
+    width: 100%;
+    margin: auto 0;
+}
+
+.thank-you-message{
+    font-size: 1.8em;
+    font-weight: 600;
+    color:#1b97aa;
+    text-align: center;
+}
+
 .confirm-message{
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 500;
+    margin: 10px 0;
+    text-align: center;
 }
 
 .confirm-right-column .right-column-cont{
