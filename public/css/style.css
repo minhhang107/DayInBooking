@@ -374,16 +374,26 @@ nav .nav-button:hover{
     margin-top: 100px;
 }
 
-.info-video-section .video-content{
+.info-video-section .video-content-cont{
     display: inline-block;
     float: left;
     width: 50%;
     margin: auto 0px;
     padding-right: 50px;
+}
+.info-video-section .video-content-head{
     font-weight: 500;
-    font-size: 1.5em;
+    font-size: 1.8em;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+.info-video-section .video-content{
+    font-weight: 500;
+    font-size: 1.2em;
     font-style: italic;
 }
+
 .info-video-section .video{
     display: inline-block;
     float: right;
