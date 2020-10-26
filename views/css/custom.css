@@ -1,0 +1,38 @@
+.form-group{
+  margin: 10px 40px; 
+  position: relative;
+}
+
+.form-control:focus{
+  color:#495057;
+  background-color:#fff;
+  border-color:#1b97aa;
+  border-width: 1px;
+  outline:0;
+  box-shadow:none;
+}
+
+.navbar{
+  width: 100%;
+  padding: .5rem 7.5vw;
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(223, 223, 223, 0.575);
+  position: fixed;
+  z-index: 100;
+}
+
+.navbar-brand{
+  font-size: 1.8em;
+  font-weight: bolder;
+}
+
+.nav-link{
+  text-align: center;
+}
+
+.nav-link:hover{
+  border: 0.1px solid #7ecad6;
+  box-shadow: 3px 3px 10px #99d4dd69;
+  border-radius: 10px;
+  cursor: pointer;
+}
