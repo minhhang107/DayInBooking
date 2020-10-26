@@ -298,6 +298,10 @@ a{
     margin: 5vh 7.5%;
 }
 
+.info-video-section div{
+    height: auto;
+}
+
 .info-video-section .video-content-cont{
     margin: auto;
     width: 100%;
@@ -325,8 +329,8 @@ a{
 }
 
 iframe{
-    height: 50vh;
-    width: 100%;
+    height: 100%;
+    width: auto;
     margin: 0;
 }
 
