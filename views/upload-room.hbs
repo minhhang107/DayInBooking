@@ -22,11 +22,11 @@
       <div class="head1">Start listing your place</div>
       <div class="row">
         <div class="list-room-info col-md-6">
-        <form action="" id="list-room-form">
+        <form action="/upload-for-process" method="POST" enctype="multipart/form-data" id="list-room-form">
           <div class="list-cont">
             <div class="head3">What kind of place do you have?</div>
             <div class="form-group form-group-upload">
-            <label for="property-type">What is the type of your property?</label
+            <label>What is the type of your property?</label
             ><br/>
             <select class="form-control" id="list-type-of-room" name="list-type-of-room">
               <option value="entire room">Entire place</option>
@@ -120,7 +120,7 @@
                 type="file"
                 class="custom-file-input"
                 id="list-room-photo"
-                name="list-room-photo"
+                name="photo"
               />
               <label class="custom-file-label" for="list-room-photo">Choose your photos</label>
             </div>
@@ -138,7 +138,8 @@
             />
           </div>
           <div class="list-cont">
-            <button class="btn btn-info" id="list-button">List your room</button>
+            {{!-- <button type="submit" class="btn btn-info" id="list-button">List your room</button> --}}
+            <input type="submit" class="btn btn-info" id="list-button" value="List your room"/>
           </div>
         </form>
       </div>
