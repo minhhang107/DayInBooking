@@ -1,5 +1,4 @@
 var roomModel = require("../models/roomModel");
-var photoModel = require("../models/photoModel");
 var express = require("express");
 var multer = require("multer");
 const _ = require("underscore");

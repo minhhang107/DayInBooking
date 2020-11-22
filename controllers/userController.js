@@ -4,7 +4,7 @@ var userModel = require("../models/userModel.js");
 var roomModel = require("../models/roomModel.js");
 // var validationController = require("./validationController");
 var nodemailer = require("nodemailer");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
