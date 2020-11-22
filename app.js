@@ -1,29 +1,25 @@
 var express = require('express');
 var app= express();
 var path = require("path");
+require("dotenv").config();
 var bodyParser = require('body-parser')
-var nodemailer = require('nodemailer');
 var multer = require("multer");
 const hbs = require('express-handlebars');
+const clientSessions = require("client-sessions");
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var userController = require('./controllers/userController');
+var adminController = require('./controllers/adminController');
+var userModel = require("./models/userModel");
+var roomModel = require("./models/roomModel")
+
+//const config = require("./config.js");
+
+mongoose.createConnection("mongodb://localhost/DayIn", { useNewUrlParser: true, useUnifiedTopology: true });
 
 var HTTP_PORT = process.env.PORT || 8080;
 
-const STORAGE = multer.diskStorage({
-    destination: "./public/photos/",
-    filename: function(req, file, cb){
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
 
-const UPLOAD = multer({storage: STORAGE});
-
-var transporter = nodemailer.createTransport({
-    service:'gmail',
-    auth: {
-        user:'mh.web322@gmail.com',
-        pass: 'web/322/'
-    }
-});
 
 function onHttpStart(){
     console.log("Express http server listening on: " + HTTP_PORT);
@@ -36,6 +32,23 @@ app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/public'));
 app.engine('.hbs', hbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
+
+app.use(clientSessions({
+    cookieName: "session",
+    secret: "Web322",
+    duration: 2*60*1000,
+    activeDuration: 1000*60
+}))
+
+const STORAGE = multer.diskStorage({
+    destination: "./public/photos/",
+    filename: function(req, file, cb){
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const UPLOAD = multer({storage: STORAGE});
+
 
 
 
@@ -62,48 +75,51 @@ app.get('/upload-room', function(req, res){
     res.render('upload-room', {layout: false});
 });
 
-app.post("/upload-for-process", UPLOAD.single("photo"), (req, res) => {
-    const FORM_DATA = req.body;
-    const FILE_DATA = req.file;
-
-    const DATA_OUTPUT = "Your submission was received: <br/><br/>" +
-        "Your form data was: <br/>" + JSON.stringify(FORM_DATA) + "<br/><br/>" +
-        "Your file date was: <br/>" + JSON.stringify(FILE_DATA) + "<br/><br/>" +
-        "This is the uploaded image: <br/>" +
-        "<img src='/photos/" + FILE_DATA.filename + "'/><br/><br/>";
-        
-    res.send(DATA_OUTPUT);
-
-});
+app.post("/upload-for-process", UPLOAD.single("photo"), adminController.uploadPhoto);
 
 app.get('/confirm', function(req, res){
     res.render('confirm', {layout: false});
 });
 
-app.post("/dashboard",  (req,res)=>{
-    const FORM_DATA = req.body;
-    
-    res.render('dashboard', {
-        firstName: FORM_DATA.fname,
-        layout: false
-    });
+// app.post("/sign-up", userController.addUser);
 
-    var emailOptions = {
-        from: 'mh.web322@gmail.com',
-        to: FORM_DATA.email,
-        subject: 'Welcome to DayIn!',
-        html: '<p>Hello ' + FORM_DATA.fname + ",</p><p>Welcome to DayIn!<p/><p>You're now a part of our community that connects global travellers with local hosts throughout Canada. Now you can find a place to stay or share your amazing home with visitors.</p><p>Please click <a href='#'>here</a> to verify your account.</p>"
-    }
+app.post('/sign-up', userController.addUser);
 
-    transporter.sendMail(emailOptions, (error, info)=>{
-        if (error){
-            console.log("ERROR: " + error);
-        }
-        else{
-            console.log("SUCCESS: " + info.response);
-        }
-    })
+app.post("/log-in", userController.logIn);
+
+app.post("/room-details", adminController.addRoom);
+
+app.post("/search-result", userController.searchRooms);
+
+app.get('/log-in', function(req, res){
+    res.render('log-in', {layout: false});
+});
+
+app.get('/dashboard', function(req, res){
+    res.render('dashboard', {layout: false});
+});
+
+
+app.get('/sign-up', function(req, res){
+    res.render('sign-up', {layout: false});
+});
+
+app.get('/log-out', (req, res)=>{
+    req.session.reset();
+    res.redirect("/");
 })
 
+app.post('/delete-room/:roomID', adminController.deleteRoom);
+
+// test front end for user/admin dashboard
+app.get('/user-dashboard', function(req, res){
+    res.render('user-dashboard', {layout: false});
+});
+
+app.get('/admin-dashboard', function(req, res){
+    res.render('admin-dashboard', {layout: false});
+});
+
+//app.post('/admin-dashboard', adminController.deleteRoom);
 
 app.listen(HTTP_PORT, onHttpStart());

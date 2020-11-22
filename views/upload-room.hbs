@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500&display=swap" rel="stylesheet" />
@@ -13,142 +14,88 @@
   <link rel="icon" href="/img/logo.png">
   <title>DayIn Your Dream Home</title>
 </head>
-  <body>
+
+<body>
 
 
-    {{>header}}
+  {{>userHeader}}
 
-    <div class="main-upload-page main-container">
-      <div class="head1">Start listing your place</div>
-      <div class="row">
-        <div class="list-room-info col-md-6">
+  <div class="main-upload-page main-container">
+    <div class="head1">Start listing your place</div>
+    <div class="row">
+      <div class="list-room-info col-md-6">
         <form action="/upload-for-process" method="POST" enctype="multipart/form-data" id="list-room-form">
           <div class="list-cont">
-            <div class="head3">What kind of place do you have?</div>
-            <div class="form-group form-group-upload">
-            <label>What is the type of your property?</label
-            ><br/>
-            <select class="form-control" id="list-type-of-room" name="list-type-of-room">
-              <option value="entire room">Entire place</option>
-              <option value="private room">Private room</option>
-              <option value="shared room">Shared room</option>
-            </select>
+            <div class="list-title head3">
+              Choose a title for your place
             </div>
-            <div class="form-group form-group-upload">
-            <label for="list-no-of-guests"
-              >How many guests can stay at your place?</label
-            ><br />
-            <select class="form-control" id="list-no-of-guests" name="list-no-of-guests">
-              <option value="1">for 1 guest</option>
-              <option value="2">for 2 guests</option>
-              <option value="3">for 3 guests</option>
-              <option value="4">for 4 guests</option>
-              <option value="5">for 5 guests</option>
-              <option value="6">for 6 guests</option>
-              <option value="7">for 7 guests</option>
-              <option value="8">for 8 guests</option>
-              <option value="9">for 9 guests</option>
-              <option value="10">for 10 guests</option>
-            </select>
-            </div>
+            <input class="form-control" type="text" id="list-title" name="list-title"/>
           </div>
+          
           <div class="list-cont">
             <div class="head3">Where's your place located?</div>
             <div class="row">
               <div class="form-group form-group-upload col">
                 <label for="list-street">Street address</label>
-                <input class="form-control" type="text" id="list-street" name="list-street" placeholder="e.g. 1 King Street West"/>
+                <input class="form-control" type="text" id="list-street" name="list-street"
+                  placeholder="e.g. 1 King Street West" />
               </div>
               <div class="form-group form-group-upload col">
                 <label for="list-city">City</label>
-                <input class="form-control" type="text" id="list-city" name="list-city" placeholder="e.g.Toronto"/>
+                <input class="form-control" type="text" id="list-city" name="list-city" placeholder="e.g.Toronto" />
               </div>
             </div>
             <div class="row">
               <div class="form-group form-group-upload col">
                 <label for="list-state">State</label>
-                <input class="form-control" type="text" id="list-state" name="list-state" placeholder="e.g. Ontario"/>
+                <input class="form-control" type="text" id="list-state" name="list-state" placeholder="e.g. Ontario" />
               </div>
               <div class="form-group form-group-upload col">
                 <label for="list-postal-code">Postal code</label>
-                <input class="form-control" type="text" id="list-postal-code" name="list-postal-code" placeholder="e.g. A1A 1A1"/>
+                <input class="form-control" type="text" id="list-postal-code" name="list-postal-code"
+                  placeholder="e.g. A1A 1A1" />
               </div>
             </div>
           </div>
+
           <div class="list-cont">
-            <label class="head3" for="list-amenities"
-              >What amenities do you offer?</label
-            >
-            <div class="form-group form-group-upload">
-            <input
-              type="checkbox"
-              name="list-amenities"
-              value="wifi"
-            />Wifi<br />
-            <input type="checkbox" name="list-amenities" value="tv" />TV<br />
-            <input
-              type="checkbox"
-              name="list-amenities"
-              value="heat"
-            />Heat<br />
-            <input
-              type="checkbox"
-              name="list-amenities"
-              value="air conditioning"
-            />Air conditioning<br />
-            <input
-              type="checkbox"
-              name="list-amenities"
-              value="shampoo"
-            />Shampoo<br />
-            <input
-              type="checkbox"
-              name="list-amenities"
-              value="hair dryer"
-            />Hair dryer<br />
-            <input
-              type="checkbox"
-              name="list-amenities"
-              value="closet"
-            />Closet<br />
-          </div>
-          </div>
-          <div class="list-cont">
-            <div class="list-photos head3">Upload photos of your place</div>
-            <div class="custom-file" id="list-photo-cont">
-              <input
-                type="file"
-                class="custom-file-input"
-                id="list-room-photo"
-                name="photo"
-              />
-              <label class="custom-file-label" for="list-room-photo">Choose your photos</label>
+            <div class="message-for-host-cont">
+              <div class="head3">Descriptions</div>
+              <p>
+                Let visitors know more about your place
+              </p>
+              <textarea class="form-control" id="list-description" name="list-description"></textarea>
             </div>
           </div>
+
           <div class="list-cont">
             <div class="list-price head3">
               What is the price for one night at your place?
             </div>
-            <input
-              class="form-control"
-              type="text"
-              id="list-price"
-              name="list-price"
-              placeholder="e.g. $100"
-            />
+            <input class="form-control" type="text" id="list-price" name="list-price" placeholder="e.g. $100" />
           </div>
+
+          <div class="list-cont">
+            <div class="list-photos head3">Upload photos of your place</div>
+            <div class="custom-file" id="list-photo-cont">
+              <input type="file" class="custom-file-input" id="list-room-photo" name="photo" />
+              <label class="custom-file-label" for="list-room-photo">Choose your photos</label>
+            </div>
+          </div>
+         
           <div class="list-cont">
             {{!-- <button type="submit" class="btn btn-info" id="list-button">List your room</button> --}}
-            <input type="submit" class="btn btn-info" id="list-button" value="List your room"/>
+            <input type="submit" class="btn btn-info" id="list-button" value="List your room" />
           </div>
         </form>
       </div>
       <div class="side-photo col-md-6">
-        <img src="/img/upload.jpg"/>
+        <img src="/img/upload.jpg" />
       </div>
     </div>
-    </div>
+  </div>
 
-    {{>footer}}
-  </body>
+  {{>footer}}
+</body>
+
 </html>

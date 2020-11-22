@@ -14,13 +14,13 @@
   <title>DayIn Your Dream Home</title>
 </head>
 <body>
-    {{>header}}
+    {{>defaultHeader}}
 
-    <div class="main-container main-confirm fluid-container">
+    <div class="main-container main-confirm background-cont fluid-container">
     <div class="confirm-cont">
-      <div class="thank-you-message">Hello {{firstName}}, thank you for your registration!</div>
+      <div class="thank-you-message">Hello {{firstName}} {{lastName}}, thank you for your registration!</div>
       <div class="confirm-message">
-        A verification link has been sent to your email address. Please verify your account to start booking your first trip.
+        You can now <a href="/log-in">log in</a> to find your first stay at DayIn.
       </div>
     </div>
 

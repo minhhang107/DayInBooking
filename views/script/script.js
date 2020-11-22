@@ -1,6 +1,7 @@
 window.onload = function () {
   const signUpForm = document.querySelector("#sign-up-form");
   const logInForm = document.querySelector(".log-in-form");
+  const usrname = document.querySelector("#usrname");
   const email = document.querySelector("#email");
   const fname = document.querySelector("#fname");
   const lname = document.querySelector("#lname");
@@ -10,15 +11,20 @@ window.onload = function () {
 
 
   // validate log in information
-  logInForm.addEventListener("submit", (e) => {
-    if (!validateLogInForm()) e.preventDefault();
-  });
-
+  if (logInForm){
+    logInForm.addEventListener("submit", (e) => {
+      if (!validateLogInForm()) e.preventDefault();
+    });
+  
+  }
+  
   // validate sign up information
-  signUpForm.addEventListener("submit", (e) => {
-    if (!validateSignUpForm()) e.preventDefault();
-  });
-
+  if (signUpForm){
+    signUpForm.addEventListener("submit", (e) => {
+      if (!validateSignUpForm()) e.preventDefault();
+    });  
+  }
+  
   function validateLogInForm() {
     var validated = true;
     const usernameValue = username.value.trim();
@@ -41,12 +47,18 @@ window.onload = function () {
 
   function validateSignUpForm() {
     var validated = true;
+    const usrnameValue = usrname.value.trim();
     const emailValue = email.value.trim();
     const fnameValue = fname.value.trim();
     const lnameValue = lname.value.trim();
     const pwdValue = pwd.value.trim();
     const emailRegex = /^[a-zA-Z0-9_.-]+@[a-zA-Z-]+\.[a-zA-Z]{2,3}$/;
     const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+
+    if (usrnameValue === "") {
+      setError(usrname, "First name cannot be blank!");
+      validated = false;
+    } else setSuccess(usrname);
 
     if (emailValue === "") {
       setError(email, "Email cannot be blank!");
@@ -79,7 +91,6 @@ window.onload = function () {
       );
       validated = false;
     } else setSuccess(pwd);
-
     return validated;
   }
 
@@ -93,7 +104,7 @@ window.onload = function () {
     if (check.classList.contains("success")) check.classList.remove("success");
 
     small.innerText = message;
-    small.classList.add("error");
+    small.classList.add("error-message");
     exclamation.classList.add("error");
     input.classList.add("error");
   }
@@ -107,64 +118,9 @@ window.onload = function () {
     if (input.classList.contains("error")) input.classList.remove("error");
     if (exclamation.classList.contains("error"))
       exclamation.classList.remove("error");
-    if (small.classList.contains("error")) small.innerText = "";
+    if (small.classList.contains("error-message")) small.innerText = "";
 
     check.classList.add("success");
     input.classList.add("success");
   }
-
-  function insertDates() {
-    const birthMonth = document.querySelector("#birthmonth");
-    const birthDate = document.querySelector("#birthdate");
-    const birthYear = document.querySelector("#birthyear");
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    // insert years
-    for (var i = 2020; i >= 1950; i--) {
-      var option = document.createElement("option");
-      option.textContent = i;
-      option.value = i;
-      birthYear.appendChild(option);
-    }
-
-    // insert months
-    for (var i = 0; i < 12; i++) {
-      var option = document.createElement("option");
-      option.textContent = months[i];
-      option.value = months[i];
-      birthMonth.appendChild(option);
-    }
-
-    // get the number of days based on month, year
-    birthMonth.onchange = function () {
-      var newMonth = months.indexOf(birthMonth.value) + 1;
-      var newYear = birthYear.value;
-
-      maxDays = new Date(newYear, newMonth, 0).getDate();
-
-    // insert days
-      birthDate.innerHTML = "";
-      for(var i=1; i<=maxDays;i++){
-        var option = document.createElement('option');
-        option.textContent= i;
-        option.value = i;
-        birthDate.appendChild(option);
-      }
-    };
-  }
-
-  insertDates();
-};
+}

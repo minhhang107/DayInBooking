@@ -16,12 +16,12 @@
 </head>
 
 <body>
-  {{>header}}
+  {{>defaultHeader}}
 
   <div class="main-homepage">
     <div class="search-section">
       <div class="form-cont">
-        <form id="search-form">
+        <form action="/search-result" method="POST" enctype="text/plain" id="search-form">
 
           <div class="form-group form-group-search">
             <label for="city">City:</label>
@@ -63,7 +63,7 @@
           </div>
           <div class="form-row">
             <div class="form-group form-group-search col">
-              <button id="search-button" class="btn btn-info" type="button"><a href="/search-result">Search</a></button>
+              <button id="search-button" class="btn btn-info" type="button">Search</button>
             </div>
           </div>
       </div>
