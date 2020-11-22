@@ -4,7 +4,7 @@ var userModel = require("../models/userModel.js");
 var roomModel = require("../models/roomModel.js");
 // var validationController = require("./validationController");
 var nodemailer = require("nodemailer");
-var bcrypt = require("bcrypt-nodejs");
+var bcrypt = require("bcryptjs");
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
@@ -190,24 +190,27 @@ var usersControllers = {
               return bcrypt.compare(FORM_DATA.password, usr.password);
             };
 
-            compare()
+            // compare()
             bcrypt.compare(FORM_DATA.password, usr.password)
               .then((matched) => {
                 if (matched) {
-                  req.session.user = {
-                    username: usr.username,
-                    password: usr.password,
-                    isAdmin: usr.isAdmin,
-                  };
-
-                  // redirect to user/admin dashboard page
+                  // redirect to user/admin dashboard page and set up session
                   if (usr.isAdmin) {
+                    req.session.admin = {
+                      username: usr.username,
+                      password: usr.password,
+                    };
+
                     res.render("admin-dashboard", {
                       firstName: usr.fname,
                       lastName: usr.lname,
                       layout: false,
                     });
                   } else {
+                    req.session.user = {
+                      username: usr.username,
+                      password: usr.password,
+                    };
                     res.render("user-dashboard", {
                       firstName: usr.fname,
                       lastName: usr.lname,
