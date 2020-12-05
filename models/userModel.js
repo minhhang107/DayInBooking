@@ -35,4 +35,4 @@ var UserSchema = new Schema({
 });
 
 
-module.exports = db.model("Users", UserSchema);
+module.exports = db.model("users", UserSchema);

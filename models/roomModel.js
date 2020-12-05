@@ -16,4 +16,4 @@ var RoomModel = new Schema({
     "image": String
 });
 
-module.exports = db.model("Rooms", RoomModel);
+module.exports = db.model("rooms", RoomModel);
