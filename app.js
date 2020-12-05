@@ -1,24 +1,24 @@
-var express = require('express');
-var app= express();
+const express = require('express');
+const app= express();
+const mongoose = require("mongoose");
 require("dotenv").config({path:'./config/keys.env'});
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const hbs = require('express-handlebars');
 const clientSessions = require("client-sessions");
-var mongoose = require("mongoose");
 
 
 const userRoutes = require("./controllers/userController");
 const generalRoutes = require("./controllers/generalController");
 const adminRoutes = require("./controllers/adminController");
 
-const db = mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.createConnection("mongodb+srv://mhnguyen16:Web3222020@cluster0.oobyl.mongodb.net/DayIn?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 // db.on("error", (err) => {
 //     console.log(`db connection error! - ${err}`);
 //    });
 //    db.once("open", () => {
 //     console.log("db connection was successful!");});
 
-var HTTP_PORT = process.env.PORT || 8080;
+var HTTP_PORT = process.env.PORT || 3030;
 
 
 

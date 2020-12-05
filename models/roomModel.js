@@ -1,9 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = require("bluebird");
-let db=mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-var RoomSchema = new Schema({
+mongoose.createConnection("mongodb+srv://mhnguyen16:Web3222020@cluster0.oobyl.mongodb.net/DayIn?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+
+const RoomSchema = new Schema({
     "title": String,
     "type": String,
     "roomNums": Number,
@@ -16,5 +17,5 @@ var RoomSchema = new Schema({
     "image": String
 });
 
-const roomModel =  db.model("rooms", RoomSchema);
+const roomModel =  mongoose.model("rooms", RoomSchema);
 module.exports = roomModel;
