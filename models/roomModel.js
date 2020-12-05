@@ -1,9 +1,9 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 mongoose.Promise = require("bluebird");
 let db=mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-var RoomModel = new Schema({
+var RoomSchema = new Schema({
     "title": String,
     "type": String,
     "roomNums": Number,
@@ -16,4 +16,5 @@ var RoomModel = new Schema({
     "image": String
 });
 
-module.exports = db.model("rooms", RoomModel);
+const roomModel =  db.model("rooms", RoomSchema);
+module.exports = roomModel;

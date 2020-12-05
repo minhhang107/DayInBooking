@@ -34,5 +34,5 @@ var UserSchema = new Schema({
     }]
 });
 
-
-module.exports = db.model("users", UserSchema);
+const userModel = db.model("users", UserSchema); 
+module.exports = userModel;

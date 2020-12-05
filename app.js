@@ -1,6 +1,6 @@
 var express = require('express');
 var app= express();
-require("dotenv").config();
+require("dotenv").config({path:'./config/keys.env'});
 var bodyParser = require('body-parser')
 const hbs = require('express-handlebars');
 const clientSessions = require("client-sessions");
@@ -11,12 +11,12 @@ const userRoutes = require("./controllers/userController");
 const generalRoutes = require("./controllers/generalController");
 const adminRoutes = require("./controllers/adminController");
 
-var db = mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-db.on("error", (err) => {
-    console.log(`db connection error! - ${err}`);
-   });
-   db.once("open", () => {
-    console.log("db connection was successful!");});
+const db = mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// db.on("error", (err) => {
+//     console.log(`db connection error! - ${err}`);
+//    });
+//    db.once("open", () => {
+//     console.log("db connection was successful!");});
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -50,3 +50,4 @@ app.set('view engine', '.hbs');
 
 
 app.listen(HTTP_PORT, onHttpStart());
+
