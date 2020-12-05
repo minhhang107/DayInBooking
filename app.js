@@ -11,7 +11,7 @@ const userRoutes = require("./controllers/userController");
 const generalRoutes = require("./controllers/generalController");
 const adminRoutes = require("./controllers/adminController");
 
-var db = mongoose.createConnection("mongodb+srv://mhnguyen16:Web3222020@cluster0.oobyl.mongodb.net/DayIn?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+var db = mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 db.on("error", (err) => {
     console.log("db connection error! - ${err}");
    });
