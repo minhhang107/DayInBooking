@@ -1,7 +1,7 @@
 const express = require('express');
 const app= express();
 const mongoose = require("mongoose");
-require("dotenv").config({path:'./config/keys.env'});
+require("dotenv").config();
 const bodyParser = require('body-parser')
 const hbs = require('express-handlebars');
 const clientSessions = require("client-sessions");
@@ -11,7 +11,7 @@ const userRoutes = require("./controllers/userController");
 const generalRoutes = require("./controllers/generalController");
 const adminRoutes = require("./controllers/adminController");
 
-mongoose.createConnection("mongodb+srv://mhnguyen16:Web3222020@cluster0.oobyl.mongodb.net/DayIn?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 // db.on("error", (err) => {
 //     console.log(`db connection error! - ${err}`);
 //    });

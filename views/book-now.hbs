@@ -1,44 +1,46 @@
 <div class="main-book-now main-container">
   {{!-- <div class="trip-details-confirm"></div> --}}
   <div class="head1">Confirm and pay</div>
-  <form action="/confirm/:{{booking.roomID}}" method="POST" enctype="application/x-www-form-urlencoded" id="payment-form" name="payment-form">
-    <div class="head3">{{booking.roomName}} - <i>${{booking.roomPrice}} / night</i></div>
+  <form action="/confirm/:{{booking.roomID}}" method="POST" enctype="application/x-www-form-urlencoded"
+    id="payment-form" name="payment-form">
+    <div class="head3">{{booking.roomName}}</div>
     <div class="date-guest-info-cont row">
-      <div class="book-now-room col-sm-4">
+      <div class="book-now-room col-md-7">
         <img src="/photos/{{booking.roomImage}}" />
       </div>
-      <div class="book-summary col-sm-8">
+      <div class="book-summary col-md-5">
 
-        <div class="date-info">
+        <div class="room-reserve-cont">
+          <div class="date-info reserve-form">
+            <div class="room-price"><b>${{booking.roomPrice}}</b> / night</div>
+            <div class="check-in-cont">
+              <label for="check-in">Check-in:</label><br />
+              <input type="date" id="check-in" name="checkIn" min="2020-10-02" max="2022-01-01"
+                value="{{booking.startDate}}" />
+            </div>
 
-          <div class="check-in-cont">
-            <label for="check-in">Check-in:</label><br />
-            <input type="date" id="check-in" name="checkIn" min="2020-10-02" max="2022-01-01"
-              value="{{booking.startDate}}" />
-          </div>
+            <div class="check-out-cont">
+              <label for="check-out">Check-out:</label><br />
+              <input type="date" id="check-out" name="checkOut" min="2020-10-02" max="2022-01-01"
+                value="{{booking.endDate}}" />
+            </div>
 
-          <div class="check-out-cont">
-            <label for="check-out">Check-out:</label><br />
-            <input type="date" id="check-out" name="checkOut" min="2020-10-02" max="2022-01-01"
-              value="{{booking.endDate}}" />
+            <div class="guests-cont">
+              <label for="guests">Guests:</label><br />
+              <input type="number" min="1" name="guests" value="{{booking.guests}}" />
+            </div>
+            <div class="total-cont">
+              Total Price: <span id="total">{{booking.totalPrice}}</span>
+            </div>
+            <input type="hidden" name="totalPrice" value="{{booking.totalPrice}}" />
+            <input type="hidden" name="totalDays" value="{{booking.totalDays}}" />
+            <input type="hidden" name="roomPrice" value="{{booking.roomPrice}}" />
+            <input type="hidden" name="roomID" value="{{booking.roomID}}" />
+            <input type="hidden" name="roomName" value="{{booking.roomName}}" />
+            <input type="hidden" name="roomCity" value="{{booking.roomCity}}" />
+            <input type="hidden" name="roomImage" value="{{booking.roomImage}}" />
           </div>
-
-          <div class="guests-cont">
-            <label for="guests">Guests:</label><br />
-            <input type="number" min="1" name="guests" value="{{booking.guests}}" />
-          </div>
-          <div class="total-cont">
-            Total Price: <span id="total">{{booking.totalPrice}}</span>
-          </div>
-          <input type="hidden" name="totalPrice" value="{{booking.totalPrice}}" />
-          <input type="hidden" name="totalDays" value="{{booking.totalDays}}" />
-          <input type="hidden" name="roomPrice" value="{{booking.roomPrice}}" />
-          <input type="hidden" name="roomID" value="{{booking.roomID}}" />
-          <input type="hidden" name="roomName" value="{{booking.roomName}}" />
-          <input type="hidden" name="roomCity" value="{{booking.roomCity}}" />
-          <input type="hidden" name="roomImage" value="{{booking.roomImage}}" />
         </div>
-
       </div>
     </div>
 

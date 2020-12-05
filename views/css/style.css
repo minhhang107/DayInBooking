@@ -606,12 +606,11 @@ footer{
     margin: 5px 0 0 40px;
 }
 
-#room-reserve{
+.room-reserve-cont{
     width: 100%;
-    grid-area: reserve;
     position: relative;
     margin:0;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 .reserve-form{
@@ -621,7 +620,7 @@ footer{
     box-shadow:rgba(0, 0, 0, 0.12) 0px 6px 10px
 }
 
-#room-reserve .room-price{
+.room-reserve-cont .room-price{
     display: inline-block;
     font-size: 1.2em;
     color: rgb(70, 70, 70);
@@ -629,16 +628,20 @@ footer{
     margin: 20px 0 20px 10%;
 }
 
-#room-reserve .room-rating{
+.room-reserve-cont .room-rating{
     display: inline-block;
     float: right;
     margin: 23px 10% 20px 0;
 }
 
-#room-reserve #check-in-cont, #check-out-cont, #guests-cont{
+.reserve-form .check-in-cont, .reserve-form .check-out-cont, .reserve-form .guests-cont, .reserve-form .total-cont{
     display: block;
     margin: 20px 10% 0 10%;
     width: 80%;
+}
+
+.reserve-form .total-cont{
+    margin-bottom: 20px;
 }
 
 .reserve-form input{
@@ -707,20 +710,16 @@ footer{
 .book-now-room{
     width: 100%;
     height: auto;
-    object-fit: cover;
+    margin-top: 10px;
     padding-left: 0;
 }
 
 .book-now-room img{
-    /* height: 180px; */
-    height: auto;
-    max-width: 100%;
+    max-height: 360px;
+    width: 100%;
+    object-fit: cover;
 }
 
-.main-book-now .check-in-cont, .check-out-cont{
-    display: inline-block;
-    width: 45%;
-}
 
 .date-info label{
     margin: 0;
@@ -732,12 +731,12 @@ footer{
 }
 
 .main-book-now .check-in-cont input, .main-book-now .check-out-cont input{
-    width: 90%;
-}
-
-.main-book-now .guests-cont{
     width: 100%;
 }
+
+/* .main-book-now .guests-cont{
+    width: 100%;
+} */
 
 .total-cont{
     font-size: 1.2em;

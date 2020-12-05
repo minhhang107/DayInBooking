@@ -28,26 +28,26 @@
       </div>
       
     </div>
-    <div id="room-reserve" class="col-md-5">
+    <div class="room-reserve-cont col-md-5" >
       <form action="/book-now/{{room._id}}" method="POST" enctype="application/x-www-form-urlencoded" class="reserve-form">
         <div class="room-price"><b>${{room.price}}</b> / night</div>
         <div class="room-rating"><img src="/img/star.png" />4.57</div>
         <br /><br />
-        <div id="check-in-cont">
+        <div class="check-in-cont">
           <label for="check-in">Check-in:</label>
           <br />
           <input type="date" id="check-in" name="checkIn" min="2020-10-02" max="2022-01-01"
             placeholder="Choose date" />
         </div>
 
-        <div id="check-out-cont">
+        <div class="check-out-cont">
           <label for="check-out">Check-out:</label>
           <br />
           <input type="date" id="check-out" name="checkOut" min="2020-10-02" max="2022-01-01"
             placeholder="Choose date" />
         </div>
 
-        <div id="guests-cont">
+        <div class="guests-cont">
           <label for="guests">Guests:</label>
           <br />
           <input type="number" min="1" name="guests" placeholder="Add guests" />

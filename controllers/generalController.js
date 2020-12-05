@@ -1,4 +1,5 @@
 var express = require("express");
+const { runInNewContext } = require("vm");
 var router = express.Router();
 var roomModel = require("../models/roomModel");
 
@@ -25,7 +26,7 @@ router.post("/search-result/:city", (req, res) => {
         if (rooms.length === 0) {
           res.render("search-result", {
             error: "There are no rooms available",
-            city: req.body.city, 
+            city: req.body.city,
             user: req.session.user,
           });
         } else {
