@@ -13,7 +13,7 @@ const adminRoutes = require("./controllers/adminController");
 
 var db = mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 db.on("error", (err) => {
-    console.log("db connection error! - ${err}");
+    console.log(`db connection error! - ${err}`);
    });
    db.once("open", () => {
     console.log("db connection was successful!");});
