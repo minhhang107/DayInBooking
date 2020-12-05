@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = require("bluebird");
 
-mongoose.createConnection("mongodb+srv://mhnguyen16:Web3222020@cluster0.oobyl.mongodb.net/DayIn?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+let db = mongoose.createConnection("mongodb+srv://mhnguyen16:Web3222020@cluster0.oobyl.mongodb.net/DayIn?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const UserSchema = new Schema({
     "username": {
@@ -35,4 +35,4 @@ const UserSchema = new Schema({
 });
 
 
-module.exports = mongoose.model("users", UserSchema); ;
+module.exports = db.model("users", UserSchema); ;
