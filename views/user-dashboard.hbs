@@ -1,29 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/custom.css">
-  <link type="text/css" href="/css/style.css" rel="stylesheet" />
-  <link rel="icon" href="/img/logo.png">
-  <title>DayIn Your Dream Home</title>
-</head>
-<body>
-    {{>userHeader}}
-    <div>Hello, {{firstName}} {{lastName}}</div>
-    <div class="bookings-container">
-      <div>Booking History</div>
-      <div class="bookings">
-        
-      </div>
-    </div>
-    
+<div class="dash-background-cont"></div>
+<div class="main-admin-dashboard ">
+  <div class="top-bar">
+    <div class="greeting">Welcome, {{user.username}}</div>
+  </div>
+  <div>
+    <div class="main-user-dashboard row">
 
-    {{>footer}}
-</body>
-</html>
+      <div class="profile-cont col-lg-3">
+        <div class="box">
+          <div class="profile">Your Profile</div>
+          <div class="fname">First name: {{user.fname}}</div>
+          <div class="lname">Last name: {{user.lname}}</div>
+          <div class="email">Email: {{user.email}}</div>
+        </div>
+      </div>
+
+      <div class="booking-history-cont col-lg-9">
+        <div class="booking-title">Your booking history</div>
+        {{#if bookings}}
+        <div class="rooms">
+          {{#each bookings}}
+          <div class="booking row">
+            <div class="room-photo-cont col-sm-4">
+              <img src='/photos/{{this.roomImage}}' alt="{{this.roomImage}}">
+            </div>
+            <div class="room-details-cont col-sm-8">
+              <div class="button-cont">
+                <a href="/room-details/{{this.roomID}}"><span class="title">{{this.roomName}}
+                  </span><span><i>({{this.roomCity}})</i></span></a>
+              </div>
+              <div class="room-info-cont">
+                <div>
+                  <span>Check in: </span><span class="checkInFormatted"></span>
+                  <input class="checkInDate" type="hidden" value="{{this.startDate}}">
+                </div>
+                <div>
+                  <span>Check out: </span><span class="checkOutFormatted"></span>
+                  <input class="checkOutDate" type="hidden" value="{{this.endDate}}">
+                </div>
+                <div class="price">Total price: ${{this.totalPrice}}</div>
+              </div>
+            </div>
+
+          </div>
+        {{/each}}
+        </div>
+        {{else}}
+        <div class="list">You have no bookings yet. Start your search now!</div>
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</div>

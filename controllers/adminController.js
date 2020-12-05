@@ -1,143 +1,251 @@
-var roomModel = require("../models/roomModel");
 var express = require("express");
+var router = express.Router();
 var multer = require("multer");
+var path = require("path");
 const _ = require("underscore");
 const fs = require("fs");
+const { Mongoose, get } = require("mongoose");
+var roomModel = require("../models/roomModel");
+const { Promise } = require("bluebird");
 const PHOTODIRECTORY = "./public/photos/";
 
 if (!fs.existsSync(PHOTODIRECTORY)) {
   fs.mkdirSync(PHOTODIRECTORY);
 }
 
-// const STORAGE = multer.diskStorage({
-//     destination: "./public/photos/",
-//     filename: function(req, file, cb){
-//         cb(null, Date.now() + path.extname(file.originalname));
-//     }
-// });
-
-// const UPLOAD = multer({storage: STORAGE});
-
-//UPLOAD.single("photo")
-var adminController = {
-  checkAdminLogIn(req, res) {
-    if (!req.session.user || !req.session.user.isAdmin) {
-      res.render("log-in", {
-        error: "Unauthorized access, only admin can access this page. Please log in as an admin.",
-        layout: false,
-      });
-    } else next();
+const STORAGE = multer.diskStorage({
+  destination: "./public/photos/",
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
   },
+});
 
-  loadAdminDashboard(req, res) {
-    const rooms = roomModel.find();
-    res.render("admin-dashboard", {
-      rooms: rooms,
-      hasRooms: !!rooms.length,
-      layout: false,
+const UPLOAD = multer({ storage: STORAGE });
+
+var checkAdminLogIn = function (req, res, next) {
+  if (!req.session.user || !req.session.user.isAdmin) {
+    res.render("log-in", {
+      error:
+        "Unauthorized access, only admin can access this page. Please log in as an admin.",
+      user: req.session.user,
     });
-  },
+  } else next();
+};
 
-  uploadPhoto(req, res) {
-    const locals = {
-      message: "Your photo was uploaded successfully",
-      layout: false,
-    };
-
-    const newPhoto = new photoModel({
-      filename: req.file.filename,
-    });
-
-    newPhoto
-      .save()
-      .then((response) => {
-        console.log("saved successfully");
-        res.render("/upload-room", locals);
-      })
-      .catch((err) => {
-        locals.message = "There was an error uploading your photo";
-        console.log(err);
-        res.render("/upload-room");
+// routes
+router.get("/admin-dashboard", checkAdminLogIn, function (req, res) {
+  roomModel
+    .find()
+    .lean()
+    .exec()
+    .then((rooms) => {
+      res.render("admin-dashboard", {
+        rooms: rooms,
+        user: req.session.user,
       });
-  },
+    })
+    .catch((err) => {
+      console.log("ERROR: " + err);
+    });
+});
 
-  addRoom(req, res) {
-    const FORM_DATA = req.body;
+router.get("/upload-room", checkAdminLogIn, function (req, res) {
+  res.render("upload-room", { user: req.session.user });
+});
+
+router.post(
+  "/room-details",
+  checkAdminLogIn,
+  UPLOAD.single("photo"),
+  (req, res) => {
+
+    // if (room.image === "") {
+    //   res.render("upload-room", {
+    //     error: "You must upload a photo for your room",
+    //     room: room,
+    //     user: req.session.user,
+    //   });
+    // }
+
 
     // create new room
     var newRoom = new roomModel({
-      title: FORM_DATA.list-title,
-      description: FORM_DATA.list - description,
-      location: {
-        address: FORM_DATA.list - street,
-        city: FORM_DATA.list - city,
-        state: FORM_DATA.list - state,
-        postalCode: FORM_DATA.list - postal - code,
-      },
-      price: FORM_DATA.list - price,
-      photos: true,
+      title: req.body.listTitle,
+      type: req.body.listType,
+      roomNums: req.body.listRoomNums,
+      description: req.body.listDescription,
+      address: req.body.listStreet,
+      city: req.body.listCity,
+      state: req.body.listState,
+      postalCode: req.body.listPostalCode,
+      price: req.body.listPrice,
+      image: req.file.filename,
     });
 
-    // save room
-    newRoom.save((err) => {
-      if (err) {
-        console.log("There was an error creating new room");
-      } else {
+    newRoom
+      .save()
+      .then((thisRoom) => {
         console.log("New room was created successfully!");
 
-        // redirect to dashboard
-        res.render("dashboard", {
-          firstName: FORM_DATA.fname,
-          layout: false,
-        });
-      }
-    });
-  },
-
-  deleteRoom(req, res) {
-    const roomID = req.params._id;
-    const photos = req.params.photos;
-
-    roomModel.remove({_id : roomID})
-    .then(()=>{
-      photos.forEach((photo)=>{
-        fs.unlink(PHOTODIRECTORY + photo.filename, (err)=>{
-          if (err){
-            return console.log(err);
-          }
-          console.log("Removed file: " + photo.filename);
-        })
+        roomModel
+          .findOne({ _id: thisRoom._id })
+          .lean()
+          .exec()
+          .then((room) => {
+            
+            res.render("room-details", { room: room, user: req.session.user });
+          })
+          .catch((err) => {
+            console.log(`Error finding room: ${err}`);
+          });
+      })
+      .catch((err) => {
+        console.log(`Error saving room: ${err}`);
       });
+  }
+);
 
-      return res.redirect('/admin-dashboard');
+router.get("/edit-room/:roomID", checkAdminLogIn, (req, res) => {
+  roomModel
+    .findById(req.params.roomID)
+    .lean()
+    .exec()
+    .then((room) => {
+      res.render("edit-room", {
+        room: room,
+        user: req.session.user,
+      });
     })
-    .catch((err)=>{
-      console.log(err);
-      return res.redirect('/admin-dashboard');
-    })
-  },
+    .catch((err) => {
+      console.log("ERROR: " + err);
+    });
+});
 
-  deletePhoto(req, res){
-    const filename = req.params.filename;
+router.post(
+  "/room-details/:roomID",
+  checkAdminLogIn,
+  UPLOAD.single("photo"),
+  (req, res) => {
+    var photo = "";
+    const title = req.body.listTitle;
+    const type = req.body.listType;
+    const roomNums = req.body.listRoomNums;
+    const description = req.body.listDescription;
+    const address = req.body.listStreet;
+    const city = req.body.listCity;
+    const state = req.body.listState;
+    const postalCode = req.body.listPostalCode;
+    const price = req.body.listPrice;
+    if (req.file) {
+      photo = req.file.filename;
+    } else photo = req.body.image;
 
-    photoModel.remove({filename: filename})
-    .then(()=>{
-      fs.unlink(PHOTODIRECTORY + filename, (err)=>{
-        if (err){
+    roomModel
+      .updateOne(
+        { _id: req.params.roomID },
+        {
+          $set: {
+            title: title,
+            type: type,
+            roomNums: roomNums,
+            description: description,
+            address: address,
+            city: city,
+            state: state,
+            postalCode: postalCode,
+            price: price,
+            image: photo,
+          },
+        }
+      )
+      .exec()
+      .then((err) => {
+        roomModel
+          .findById(req.params.roomID)
+          .lean()
+          .exec()
+          .then((room) => {
+            if (room.image === "") {
+              res.render("edit-room", {
+                error: "You must upload a photo for your room",
+                room: room,
+                user: req.session.user,
+              });
+            } else {
+              res.render("room-details", {
+                room: room,
+                user: req.session.user,
+              });
+            }
+          });
+      });
+  }
+);
+
+router.post("/edit-room/:roomID", checkAdminLogIn, (req, res) => {
+  const filename = req.body.photo;
+
+  roomModel
+    .updateOne({ image: filename }, { $set: { image: "" } })
+    .exec()
+    .then(() => {
+      fs.unlink(PHOTODIRECTORY + filename, (err) => {
+        if (err) {
           return console.log(err);
         }
-        console.log("Removed file: " + filename);
-      })
+        console.log("Removed photo : " + filename);
+      });
+      console.log("Room updated");
 
-      return res.redirect('/edit-room');
+      roomModel
+        .findById(req.params.roomID)
+        .lean()
+        .exec()
+        .then((room) => {
+          res.render("edit-room", { room: room, user: req.session.user });
+        });
     })
-    .catch((err)=>{
+    .catch((error) => {
+      console.log(error);
+      return res.redirect("/");
+    });
+});
+
+router.post("/admin-dashboard", checkAdminLogIn, (req, res) => {
+  const roomID = req.body.id;
+  const filename = req.body.photo;
+
+  // remove room
+  roomModel
+    .remove({ _id: roomID })
+    .then(() => {
+      console.log("Room removed");
+      //unlink photo from folder
+      if(filename!==""){
+        fs.unlink(PHOTODIRECTORY + filename, (err) => {
+          if (err) {
+            return console.log(err);
+          }
+          console.log("Removed photo : " + filename);
+        });
+        console.log("Room removed");
+      }
+      
+      roomModel
+        .find()
+        .lean()
+        .exec()
+        .then((rooms) => {
+          res.render("admin-dashboard", {
+            rooms: rooms,
+            user: req.session.user,
+          });
+        });
+    })
+    .catch((err) => {
       console.log(err);
-      return res.redirect('/edit-room');
-    })
-    
+      res.render("admin-dashboard", { user: req.session.user });
+    });
+});
 
-  }
-};
-
-module.exports = adminController;
+module.exports = router;

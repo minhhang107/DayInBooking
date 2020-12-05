@@ -1,0 +1,141 @@
+<div class="main-upload-page main-container">
+  <div class="head1">Edit your place</div>
+  {{!-- <div class="row"> --}}
+  {{!-- <div class="list-room-info col-lg-6"> --}}
+  <form method="POST" action="/room-details/{{room._id}}" enctype="multipart/form-data" id="list-room-form">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="list-cont">
+          <div class="listTitle head3">
+            Change the title for your place
+          </div>
+          <input type="hidden" name="roomID" value="{{room._id}}" />
+          <input type="hidden" name="image" value="{{room.image}}" />
+          <input class="form-control" type="text" id="listTitle" name="listTitle" value='{{room.title}}' />
+        </div>
+
+        <div class="head3">What kind of place do you have?</div>
+        <div class="form-group form-group-upload">
+          <label>What is the type of your property?</label><br />
+          <select class="form-control" id="listType" name="listType" value="{{room.type}}">
+            <option value="Entire place">Entire place</option>
+            <option value="Private room">Private room</option>
+            <option value="Shared room">Shared room</option>
+          </select>
+        </div>
+
+        <div class="form-group form-group-upload">
+          <label for="list-no-of-guests">How many rooms are available at your place?</label><br />
+          <select class="form-control" id="listRoomNums" name="listRoomNums" value="{{room.roomNums}}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+
+        <div class="list-cont">
+          <div class="head3">Change your place's location</div>
+          <div class="row">
+            <div class="form-group form-group-upload col">
+              <label for="listStreet">Street address</label>
+              <input class="form-control" type="text" id="listStreet" name="listStreet" value="{{room.address}}" />
+            </div>
+            <div class="form-group form-group-upload col">
+
+              <label for="listCity">City</label>
+              <input class="form-control" type="text" list="City" id="listCity" name="listCity" value="{{room.city}}" />
+              <datalist id="City">
+                <option value="Calgary">Calgary</option>
+                <option value="Hamilton">Hamilton</option>
+                <option value="Montreal">Montreal</option>
+                <option value="Ottawa">Ottawa</option>
+                <option value="Toronto">Toronto</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Vancouver">Vancouver</option>
+              </datalist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group form-group-upload col">
+              <label for="listState">State</label>
+              <input class="form-control" type="text" id="listState" name="listState" value="{{room.state}}" />
+            </div>
+            <div class="form-group form-group-upload col">
+              <label for="listPostalCode">Postal code</label>
+              <input class="form-control" type="text" id="listPostalCode" name="listPostalCode"
+                value="{{room.postalCode}}" />
+            </div>
+          </div>
+        </div>
+
+        <div class="list-cont">
+          <div class="message-for-host-cont">
+            <div class="head3">Descriptions</div>
+            <p>
+              Let visitors know more about your place
+            </p>
+            <textarea class="form-control" id="listDescription" name="listDescription">{{room.description}}</textarea>
+          </div>
+        </div>
+
+        <div class="list-cont">
+          <div class="listPrice head3">
+            What is the price for one night at your place?
+          </div>
+          <input class="form-control" type="text" id="listPrice" name="listPrice" value="{{room.price}}" />
+        </div>
+
+        <div class="list-cont">
+          <div class="list-photos head3">Upload photo of your place</div>
+          <input class="upload-photo-button" name="photo" type="file">
+        </div>
+      </div>
+
+      {{#if room.image}}
+      <div class="side-photo col-lg-6">
+        <img src="/photos/{{room.image}}" />
+        <span><a id="delete-button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{room._id}}">
+            Delete photo </a></span>
+      </div>
+      {{/if}}
+
+    </div>
+    <div class="list-cont">
+      <input type="submit" class="btn btn-info" id="list-button" value="Save changes" />
+    </div>
+  </form>
+  {{!-- </div> --}}
+  {{!-- {{#if room.image}}
+  <div class="side-photo col-lg-6">
+    <img src="/photos/{{room.image}}" />
+    <span><a id="delete-button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{room._id}}">
+        Delete photo </a></span>
+  </div>
+  {{/if}} --}}
+  {{!-- </div> --}}
+</div>
+
+<div class="modal fade" id="deleteModal{{room._id}}" role="dialog">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+      <div class="modal-body log-in-body">
+        <form action="/edit-room/{{room._id}}" method="POST" enctype="application/x-www-form-urlencoded">
+          <div class="confirm-delete-mes">Are you sure to delete?</div>
+          <div class="confirm-delete-button">
+            <input type="hidden" name="ID" value="{{room._id}}" />
+            <input type="hidden" name="photo" value="{{room.image}}" />
+            <input class="btn btn-light admin-button" data-backdrop="false" data-dismiss="modal" value="Cancel">
+            <input type="submit" class="btn btn-danger admin-button" value="Delete">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

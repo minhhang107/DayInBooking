@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var room = require("./roomModel");
 mongoose.Promise = require("bluebird");
 
 let db = mongoose.createConnection("mongodb://localhost/DayIn", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -21,17 +20,18 @@ var UserSchema = new Schema({
         "type": Boolean,
         "default": false
     },
-    "bookings": {
-        "startDate": {
-            "type": Date,
-            "default": null
-        },
-        "endDate": {
-            "type": Date,
-            "default": null
-        },
-        //"room": [room]
-    }
+    "bookings": [{
+        "startDate": Date,
+        "endDate": Date,
+        "roomID": String,
+        "roomName": String,
+        "roomCity": String,
+        "roomImage": String,
+        "roomPrice": Number,
+        "totalDays": Number,
+        "totalPrice": Number,
+        "guests": Number
+    }]
 });
 
 
