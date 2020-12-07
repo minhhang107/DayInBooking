@@ -20,7 +20,7 @@
         <hr />
       </div>
       <div id="room-description">
-        <div>
+        <div id="content">
           {{room.description}}
         </div>
         <br />
@@ -29,15 +29,16 @@
       
     </div>
     <div class="room-reserve-cont col-md-5" >
-      <form action="/book-now/{{room._id}}" method="POST" enctype="application/x-www-form-urlencoded" class="reserve-form">
+      <form action="/book-now/{{room._id}}" method="POST" enctype="application/x-www-form-urlencoded" class="reserve-form" id="reserve-form">
         <div class="room-price"><b>${{room.price}}</b> / night</div>
         <div class="room-rating"><img src="/img/star.png" />4.57</div>
         <br /><br />
+
         <div class="check-in-cont">
           <label for="check-in">Check-in:</label>
           <br />
-          <input type="date" id="check-in" name="checkIn" min="2020-10-02" max="2022-01-01"
-            placeholder="Choose date" />
+          <input type="date" id="check-in" name="checkIn" min="2020-10-02" max="2022-01-01" placeholder="Choose date" />
+          <small></small>
         </div>
 
         <div class="check-out-cont">
@@ -45,6 +46,7 @@
           <br />
           <input type="date" id="check-out" name="checkOut" min="2020-10-02" max="2022-01-01"
             placeholder="Choose date" />
+            <small></small>
         </div>
 
         <div class="guests-cont">
@@ -53,6 +55,7 @@
           <input type="number" min="1" name="guests" placeholder="Add guests" />
         </div>
         <div class="button-cont">
+          
           <input id="reserve-button" type="submit" class="btn btn-info" value="Reserve">
         </div>
       </form>

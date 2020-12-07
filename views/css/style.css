@@ -460,15 +460,15 @@ footer{
 
 .room-image img{
     max-width: auto;
-    max-height: 230px;
+    max-height: 500px;
     width: 100%;
     height:100%;
     object-fit: cover;
 }
 
-.room-main-info .room-image img{
+/* .room-main-info .room-image img{
     max-height: 400px;
-}
+} */
 
 .room-name{
     font-weight: 500;
@@ -503,6 +503,14 @@ footer{
     margin-top:10vh;  
 } */
 
+.main-room-details #content{
+    display: none;
+}
+
+.main-room-details small{
+    color: #e74c3c;
+}
+
 .room-main-info{
     margin: 40px 0;
 }
@@ -530,11 +538,11 @@ footer{
     width: 100%;
 }
 
-.room-main-info .room-images img{
+/* .room-main-info .room-images img{
    width: 100%;
    height:100%;
    object-fit: cover;
-}
+} */
 
 .room-more-info .room-type{
     font-size: 1.3em;
@@ -1083,6 +1091,7 @@ footer{
 .main-admin-dashboard .title{
     font-size: 1.2em;
     font-weight: 700;
+    /* max-width: 75%; */
 }
 
 .main-admin-dashboard #edit-button, #delete-button, .deleteButton{
@@ -1442,3 +1451,12 @@ footer{
     }
 }
 
+.message-for-host-cont .mce-menubtn span {
+    display: inline-block;
+    z-index:20;
+  }
+
+  .message-for-host-cont button {
+    display: inline-block;
+    z-index:20;
+  }

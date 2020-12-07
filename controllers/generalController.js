@@ -1,5 +1,4 @@
 var express = require("express");
-const { runInNewContext } = require("vm");
 var router = express.Router();
 var roomModel = require("../models/roomModel");
 
@@ -45,7 +44,11 @@ router.get("/room-details", function (req, res) {
 });
 
 router.get("/log-in", function (req, res) {
-  res.render("log-in", { user: req.session.user });
+  if (req.session.user){
+    if (req.session.user.isAdmin) res.render("admin-dashboard", { user: req.session.user });
+    else if (!req.session.user.isAdmin)res.render("user-dashboard", { user: req.session.user });
+  }
+  else  res.render("log-in", { user: req.session.user });
 });
 
 router.get("/sign-up", function (req, res) {

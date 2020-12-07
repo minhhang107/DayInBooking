@@ -12,11 +12,7 @@ const generalRoutes = require("./controllers/generalController");
 const adminRoutes = require("./controllers/adminController");
 
 mongoose.createConnection(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-// db.on("error", (err) => {
-//     console.log(`db connection error! - ${err}`);
-//    });
-//    db.once("open", () => {
-//     console.log("db connection was successful!");});
+
 
 var HTTP_PORT = process.env.PORT || 3030;
 
@@ -29,8 +25,8 @@ function onHttpStart(){
 app.use(clientSessions({
     cookieName: "session",
     secret: "Web322",
-    duration: 30*60*1000,
-    activeDuration: 5*60*1000
+    duration: 60*1000,
+    activeDuration: 60*1000
 }))
 
 app.use(bodyParser.json());

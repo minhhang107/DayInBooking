@@ -30,15 +30,50 @@ window.onload = function () {
   const description = document.getElementById("listDescription");
   const price = document.getElementById("listPrice");
   const photo = document.getElementById("listPhoto");
+  const dbscontent = document.getElementById("content");
+  const desc = document.getElementById("room-description");
+  const reserveForm = document.querySelector("#reserve-form");
+  const checkIn = document.getElementById("check-in");
+  const checkOut = document.getElementById("check-out");
+  
+  tinymce.init({
+    selector: "#listDescription",
+    height: 300,
+    content_style: "body { font-family: Tajawal; }",
+    menubar: true,
+    plugins: "paste",
+    toolbar: 'undo redo | ' +
+  'bold italic | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+    paste_as_text: true,
+  });
 
   if (nums && s) {
     for (var i = 0; i < nums.length; i++) {
       if (nums[i].textContent.trim() === "1") {
         s[i].innerHTML = "room";
-      }
-      else s[i].innerHTML = "rooms";
+      } else s[i].innerHTML = "rooms";
     }
   }
+
+  if (uploadForm){
+  uploadForm.addEventListener("submit", (e)=>{
+    const  listDescriptionContent = document.getElementById("listDescriptionContent");
+    if (listDescriptionContent){
+      var tinyContent = tinyMCE.activeEditor.getContent();
+    console.log(tinyContent);
+    listDescriptionContent.value = tinyContent;
+    }
+  });
+  }
+  
+
+  if (desc && dbscontent) {
+    console.log(dbscontent);
+    desc.innerHTML = dbscontent.textContent;
+  }
+  
 
   if (checkInDate && checkOutDate && checkInFormatted && checkOutFormatted) {
     for (var i = 0; i < checkInDate.length; i++) {
@@ -54,6 +89,11 @@ window.onload = function () {
   if (form && total) {
     form.checkIn.addEventListener("change", update_price);
     form.checkOut.addEventListener("change", update_price);
+    form.checkOut.addEventListener("change", ()=>{
+      if (form.checkIn.value > form.checkOut.value){
+        
+      }
+    })
   }
 
   if (viewRoomButton) {
@@ -62,9 +102,15 @@ window.onload = function () {
     });
   }
 
-  if (uploadForm){
-    uploadForm.addEventListener("submit", (e)=>{
+  if (uploadForm) {
+    uploadForm.addEventListener("submit", (e) => {
       if (!validateUpload()) e.preventDefault();
+    });
+  }
+
+  if (reserveForm){
+    reserveForm.addEventListener("submit", (e)=>{
+      if (!validateReserve()) e.preventDefault();
     })
   }
 
@@ -197,12 +243,12 @@ window.onload = function () {
       setError(city, "City cannot be blank.");
       validated = false;
     } else setDefault(city);
-    
+
     if (state.value === "") {
       setError(state, "State cannot be blank.");
-      validated = false;    
+      validated = false;
     } else setDefault(state);
-    
+
     if (postalCode.value === "") {
       setError(postalCode, "Postal code cannot be blank.");
       validated = false;
@@ -225,16 +271,36 @@ window.onload = function () {
     return validated;
   }
 
-  function setError(input, message) {
+  function validateReserve(){
+    var validated = true;
+    if (checkIn.value === "" ){
+      setError(checkIn, "Please enter the check in date.");
+      validated = false;
+    }else setDefault(checkIn);
 
+    if (checkOut.value === ""){
+      setError(checkOut, "Please enter the check out date.");
+      validated = false;
+    } else setDefault(checkOut);
+
+    if ((new Date(checkOut.value) - new Date(checkIn.value)) < 0){
+      setError(checkOut, "Check out date must be after check in date.");
+      validated = false;
+    } else setDefault(checkOut);
+
+    return validated;
+  }
+
+  function setError(input, message) {
     const formGroup = input.parentElement;
     const small = formGroup.querySelector("small");
     const check = formGroup.querySelector(".fa-check-circle");
     const exclamation = formGroup.querySelector(".fa-exclamation-circle");
 
     if (input.classList.contains("success")) input.classList.remove("success");
-    if (check){
-      if (check.classList.contains("success")) check.classList.remove("success");
+    if (check) {
+      if (check.classList.contains("success"))
+        check.classList.remove("success");
     }
 
     small.innerText = message;
@@ -258,7 +324,7 @@ window.onload = function () {
     input.classList.add("success");
   }
 
-  function setDefault(input){
+  function setDefault(input) {
     const formGroup = input.parentElement;
     const small = formGroup.querySelector("small");
     if (input.classList.contains("error")) input.classList.remove("error");

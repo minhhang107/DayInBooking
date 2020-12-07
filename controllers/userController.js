@@ -19,8 +19,10 @@ var transporter = nodemailer.createTransport({
 
 var checkLogIn = function (req, res, next) {
   if (!req.session.user) {
+    var errors=[];
+    errors.push("Unauthorized access, please log in to continue.");
     res.render("log-in", {
-      error: "Unauthorized access, please log in to continue.",
+      errors: errors,
       user: req.session.user,
     });
   } else next();

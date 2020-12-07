@@ -24,16 +24,23 @@
           <img src='/photos/{{this.image}}' alt="{{this.image}}">
         </div>
         <div class="room-details-cont col-sm-9">
-          <div class="button-cont">
-            <a href="/room-details/{{this._id}}"><span class="title">{{this.title}}</span></a>
-            <span><a id="delete-button-{{this._id}}" class="btn btn-danger deleteButton" data-toggle="modal"
-                data-target="#delete{{@index}}">
-                Delete </a></span>
-            <span><a href='/edit-room/{{this._id}}' id="edit-button" class="btn btn-info"> Edit </a></span>
+          <div class="button-cont row">
+            <div class="col-sm-7">
+              <a href="/room-details/{{this._id}}"><span class="title">{{this.title}}</span></a>
+            </div>
+            <div class="col-sm-5">
+              <span><a id="delete-button-{{this._id}}" class="btn btn-danger deleteButton" data-toggle="modal"
+                  data-target="#delete{{@index}}">
+                  Delete </a></span>
+              <span><a href='/edit-room/{{this._id}}' id="edit-button" class="btn btn-info"> Edit </a></span>
+
+            </div>
           </div>
+
           <div class="room-info-cont">
             <div class="location">{{this.city}}, {{this.state}}</div>
-            <div class="type">{{this.type}}</span> - <span class="nums">{{this.roomNums}} </span><span class="s"></span></div>
+            <div class="type">{{this.type}}</span> - <span class="nums">{{this.roomNums}} </span><span class="s"></span>
+            </div>
             {{!-- <div class="description-2">{{this.description}}
             </div> --}}
             <div class="price">${{this.price}}</div>

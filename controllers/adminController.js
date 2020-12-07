@@ -59,21 +59,14 @@ router.post(
   UPLOAD.single("photo"),
   (req, res) => {
 
-    // if (room.image === "") {
-    //   res.render("upload-room", {
-    //     error: "You must upload a photo for your room",
-    //     room: room,
-    //     user: req.session.user,
-    //   });
-    // }
-
+    
 
     // create new room
     var newRoom = new roomModel({
       title: req.body.listTitle,
       type: req.body.listType,
       roomNums: req.body.listRoomNums,
-      description: req.body.listDescription,
+      description: req.body.listDescriptionContent,
       address: req.body.listStreet,
       city: req.body.listCity,
       state: req.body.listState,
@@ -81,7 +74,7 @@ router.post(
       price: req.body.listPrice,
       image: req.file.filename,
     });
-
+    
     newRoom
       .save()
       .then((thisRoom) => {
@@ -93,6 +86,8 @@ router.post(
           .exec()
           .then((room) => {
             
+            
+
             res.render("room-details", { room: room, user: req.session.user });
           })
           .catch((err) => {
@@ -214,23 +209,23 @@ router.post("/edit-room/:roomID", checkAdminLogIn, (req, res) => {
 router.post("/admin-dashboard", checkAdminLogIn, (req, res) => {
   const roomID = req.body.id;
   const filename = req.body.photo;
+  
+        //unlink photo from folder
+  if(filename!==""){
+    fs.unlink(PHOTODIRECTORY + filename, (err) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log("Removed photo : " + filename);
+    });
+  }
 
   // remove room
   roomModel
     .remove({ _id: roomID })
     .then(() => {
       console.log("Room removed");
-      //unlink photo from folder
-      if(filename!==""){
-        fs.unlink(PHOTODIRECTORY + filename, (err) => {
-          if (err) {
-            return console.log(err);
-          }
-          console.log("Removed photo : " + filename);
-        });
-        console.log("Room removed");
-      }
-      
+     
       roomModel
         .find()
         .lean()
