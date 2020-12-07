@@ -23,13 +23,22 @@ const STORAGE = multer.diskStorage({
 const UPLOAD = multer({ storage: STORAGE });
 
 var checkAdminLogIn = function (req, res, next) {
-  if (!req.session.user || !req.session.user.isAdmin) {
+  if (!req.session.user){
     res.render("log-in", {
       error:
-        "Unauthorized access, only admin can access this page. Please log in as an admin.",
+        "Unauthorized access. Please log in to continue.",
       user: req.session.user,
     });
-  } else next();
+  } else{
+      if (!req.session.user.isAdmin){
+        res.render("log-in", {
+          error:
+            "Unauthorized access, only admin can access this page. Please log in as an admin.",
+          user: req.session.user,
+        });
+      }   
+      else next();
+  } 
 };
 
 // routes
@@ -59,8 +68,7 @@ router.post(
   UPLOAD.single("photo"),
   (req, res) => {
 
-    
-
+  
     // create new room
     var newRoom = new roomModel({
       title: req.body.listTitle,

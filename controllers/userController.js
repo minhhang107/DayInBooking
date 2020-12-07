@@ -11,6 +11,10 @@ const roomModel = require("../models/roomModel.js");
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
+  host: "smtp.gmail.com",
+  // port: 587,
+  ignoreTLS: false,
+  secure: false,
   auth: {
     user: "mh.web322@gmail.com",
     pass: "web/322/",
@@ -19,7 +23,7 @@ var transporter = nodemailer.createTransport({
 
 var checkLogIn = function (req, res, next) {
   if (!req.session.user) {
-    var errors=[];
+    var errors = [];
     errors.push("Unauthorized access, please log in to continue.");
     res.render("log-in", {
       errors: errors,
@@ -144,7 +148,7 @@ router.get("/dashboard", function (req, res) {
 });
 
 router.post("/log-in", function (req, res) {
-  var errors =[];
+  var errors = [];
 
   if (req.body.username === "") {
     errors.push("Username cannot be blank. Please enter a valid username");
@@ -152,11 +156,9 @@ router.post("/log-in", function (req, res) {
   if (req.body.password === "") {
     errors.push("Password cannot be blank. Please enter a valid password");
   }
-  
-
 
   if (req.body.username === "" || req.body.password === "") {
-    return res.render("log-in", {errors: errors});
+    return res.render("log-in", { errors: errors });
   } else {
     userModel
       .findOne({ username: req.body.username })
@@ -185,7 +187,7 @@ router.post("/log-in", function (req, res) {
                     lname: usr.lname,
                     password: usr.password,
                     isAdmin: usr.isAdmin,
-                    bookings: usr.bookings
+                    bookings: usr.bookings,
                   };
                   if (usr.isAdmin) {
                     roomModel
@@ -199,16 +201,20 @@ router.post("/log-in", function (req, res) {
                         });
                       });
                   } else {
-                    userModel.findById(req.session.user.id)
-                    .lean()
-                    .exec()
-                    .then((usr)=>{
-                      res.render("user-dashboard", { bookings: usr.bookings, user: req.session.user });
-                    })
+                    userModel
+                      .findById(req.session.user.id)
+                      .lean()
+                      .exec()
+                      .then((usr) => {
+                        res.render("user-dashboard", {
+                          bookings: usr.bookings,
+                          user: req.session.user,
+                        });
+                      });
                   }
                 } else {
                   console.log("Password does not match");
-                  errors.push("Wrong username or password. Please try again.")
+                  errors.push("Wrong username or password. Please try again.");
                   return res.render("log-in", {
                     errors: errors,
                     user: req.session.user,
@@ -229,13 +235,17 @@ router.post("/log-in", function (req, res) {
   }
 });
 
-router.get("/user-dashboard", checkLogIn,function (req, res) {
-  userModel.findById(req.session.user.id)
-  .lean()
-  .exec()
-  .then((user)=>{
-    res.render("user-dashboard", { bookings: user.bookings, user: req.session.user });
-  })
+router.get("/user-dashboard", checkLogIn, function (req, res) {
+  userModel
+    .findById(req.session.user.id)
+    .lean()
+    .exec()
+    .then((user) => {
+      res.render("user-dashboard", {
+        bookings: user.bookings,
+        user: req.session.user,
+      });
+    });
 });
 
 router.get("/log-out", checkLogIn, (req, res) => {
@@ -338,7 +348,9 @@ router.post("/confirm/:roomID", checkLogIn, function (req, res) {
         }
       });
     })
-    .catch((err)=>{console.log("An error occurs: " + err)});
+    .catch((err) => {
+      console.log("An error occurs: " + err);
+    });
 });
 
 router.get("/room-details/:roomID", function (req, res) {
@@ -351,12 +363,17 @@ router.get("/room-details/:roomID", function (req, res) {
     });
 });
 
-router.post("/search-results/", function(req,res){
-  roomModel.find({city: req.body.city})
-  .lean()
-  .exec()
-  .then((rooms)=>{
-    res.render("search-results", {city: req.body.city, rooms:rooms, user: req.session.user});
-  })
-})
+router.post("/search-results/", function (req, res) {
+  roomModel
+    .find({ city: req.body.city })
+    .lean()
+    .exec()
+    .then((rooms) => {
+      res.render("search-results", {
+        city: req.body.city,
+        rooms: rooms,
+        user: req.session.user,
+      });
+    });
+});
 module.exports = router;

@@ -25,8 +25,8 @@ function onHttpStart(){
 app.use(clientSessions({
     cookieName: "session",
     secret: "Web322",
-    duration: 60*1000,
-    activeDuration: 60*1000
+    duration: 30*60*1000,
+    activeDuration: 5*60*1000
 }))
 
 app.use(bodyParser.json());
