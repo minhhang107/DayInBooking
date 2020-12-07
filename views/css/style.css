@@ -123,7 +123,7 @@ a{
  
 .form-group .error{
     visibility: visible;
-    color: #e74c3c;
+    /* color: #e74c3c; */
     border-color: #e74c3c;
 } 
 
@@ -466,9 +466,10 @@ footer{
     object-fit: cover;
 }
 
-/* .room-main-info .room-image img{
-    max-height: 400px;
-} */
+.main-room-listing .room-image img{
+    height: 250px;
+    max-width: auto;
+}
 
 .room-name{
     font-weight: 500;
@@ -508,6 +509,10 @@ footer{
 }
 
 .main-room-details small{
+    color: #e74c3c;
+}
+
+#search-form small{
     color: #e74c3c;
 }
 
@@ -908,7 +913,7 @@ footer{
  
 .list-cont .error{
     visibility: visible;
-    color: #e74c3c;
+    /* color: #e74c3c; */
     border-color: #e74c3c;
 } 
 
@@ -1293,6 +1298,11 @@ footer{
     .main-sign-up-container .sign-up-form-container{
         width: 40%;
     }
+
+    .main-room-listing .room-image img{
+        height: 200px;
+        max-width: auto;
+    }
 }
 
 @media (max-width: 768px) { 
@@ -1370,6 +1380,10 @@ footer{
 
     .main-sign-up-container .sign-up-form-container{
         width: 50%;
+    }
+
+    .main-room-listing .room-image img{
+        height: 250px;
     }
 }
 

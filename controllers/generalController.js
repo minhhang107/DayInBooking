@@ -10,33 +10,19 @@ router.get("/search-result", function (req, res) {
   res.render("search-result", { user: req.session.user });
 });
 
-router.post("/search-result/:city", (req, res) => {
-  // search for rooms in city and store in an array
-  if (req.body.city === "") {
-    res.render("search-result", {
-      error: "Please enter a location",
-      user: req.session.user,
-    });
-  } else {
+router.post("/search-result", (req, res) => {
     roomModel
       .find({ city: req.body.city })
+      .lean()
       .exec()
       .then((rooms) => {
-        if (rooms.length === 0) {
+          console.log(rooms);
           res.render("search-result", {
-            error: "There are no rooms available",
+            rooms: rooms,
             city: req.body.city,
             user: req.session.user,
           });
-        } else {
-          res.render("search-result", {
-            roomsList: rooms,
-            city: req.body.city,
-            user: req.session.user,
-          });
-        }
-      });
-  }
+        })
 });
 
 router.get("/room-details", function (req, res) {
@@ -44,11 +30,12 @@ router.get("/room-details", function (req, res) {
 });
 
 router.get("/log-in", function (req, res) {
-  if (req.session.user){
-    if (req.session.user.isAdmin) res.render("admin-dashboard", { user: req.session.user });
-    else if (!req.session.user.isAdmin)res.render("user-dashboard", { user: req.session.user });
-  }
-  else  res.render("log-in", { user: req.session.user });
+  if (req.session.user) {
+    if (req.session.user.isAdmin)
+      res.render("admin-dashboard", { user: req.session.user });
+    else if (!req.session.user.isAdmin)
+      res.render("user-dashboard", { user: req.session.user });
+  } else res.render("log-in", { user: req.session.user });
 });
 
 router.get("/sign-up", function (req, res) {

@@ -35,7 +35,8 @@ window.onload = function () {
   const reserveForm = document.querySelector("#reserve-form");
   const checkIn = document.getElementById("check-in");
   const checkOut = document.getElementById("check-out");
-  
+  const searchForm = document.getElementById("search-form");
+
   tinymce.init({
     selector: "#listDescription",
     height: 300,
@@ -48,6 +49,23 @@ window.onload = function () {
   'removeformat | help',
     paste_as_text: true,
   });
+
+  if (searchForm){
+    searchForm.addEventListener("submit", (e)=>{
+      if(!validateSearch()) e.preventDefault();
+    })
+  }
+
+function validateSearch(){
+  var validated = true;
+  const cityName = document.getElementById("cityName");
+  if (cityName.value === "")
+  {
+    setError(cityName, "Please choose a city");
+    validated = false;
+  } else setDefault(cityName);
+  return validated;
+}
 
   if (nums && s) {
     for (var i = 0; i < nums.length; i++) {
