@@ -3,10 +3,10 @@ var router = express.Router();
 var multer = require("multer");
 var path = require("path");
 const _ = require("underscore");
-const fs = require("fs");
 const { Mongoose, get } = require("mongoose");
 var roomModel = require("../models/roomModel");
 const { Promise } = require("bluebird");
+const fs = require("fs");
 const PHOTODIRECTORY = "./public/photos/";
 
 if (!fs.existsSync(PHOTODIRECTORY)) {
