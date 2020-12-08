@@ -16,8 +16,8 @@ var transporter = nodemailer.createTransport({
   ignoreTLS: false,
   secure: false,
   auth: {
-    user: "mh.web322@gmail.com",
-    pass: "web/322/",
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
   },
 });
 
@@ -321,7 +321,7 @@ router.post("/confirm/:roomID", checkLogIn, function (req, res) {
 
       // send confirmation email
       var emailOptions = {
-        from: "mh.web322@gmail.com",
+        from: process.env.EMAIL,
         to: req.session.user.email,
         subject: "Booking confirmation",
         html:
@@ -335,7 +335,7 @@ router.post("/confirm/:roomID", checkLogIn, function (req, res) {
           newBooking.startDate +
           " to " +
           newBooking.endDate +
-          ".</div><div>Total price: " +
+          ".</div><div>Total price: $" +
           newBooking.totalPrice +
           "</div>",
       };
