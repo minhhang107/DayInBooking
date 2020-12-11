@@ -105,7 +105,7 @@ router.post("/sign-up", async function (req, res) {
                       html:
                         "<p>Hello " +
                         FORM_DATA.fname +
-                        ",</p><p>Welcome to DayIn!<p/><p>You're now a part of our community that connects global travellers with local hosts throughout Canada. Now you can find a place to stay or share your amazing home with visitors.</p><p>Please click <a href='#'>here</a> to verify your account.</p>",
+                        ",</p><p>Welcome to DayIn!<p/><p>You're now a part of our community that connects global travellers with local hosts throughout Canada. Now you can find a place to stay or share your amazing home with visitors.</p>",
                     };
 
                     transporter.sendMail(emailOptions, (error, info) => {
