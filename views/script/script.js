@@ -32,7 +32,7 @@ window.onload =  () =>{
   var reserveForm = document.querySelector("#reserve-form");
   const searchForm = document.getElementById("search-form");
   const paymentForm = document.getElementById("payment-form");
-  
+  const confirmModal = document.getElementById("confirmModal");
   tinymce.init({
     selector: "#listDescription",
     height: 300,
@@ -47,7 +47,8 @@ window.onload =  () =>{
     paste_as_text: true,
   });
 
-  document.querySelector('[data-target="#confirmModal"]').click();
+  if (confirmModal)
+    document.querySelector('[data-target="#confirmModal"]').click();
 
   if (searchForm) {
     searchForm.addEventListener("submit", (e) => {
@@ -61,6 +62,10 @@ window.onload =  () =>{
         s[i].innerHTML = "room";
       } else s[i].innerHTML = "rooms";
     }
+  }
+
+  if (desc && dbscontent) {
+    desc.innerHTML = dbscontent.textContent;
   }
 
   if (uploadForm) {
@@ -93,9 +98,7 @@ window.onload =  () =>{
     });
   }
 
-  if (desc && dbscontent) {
-    desc.innerHTML = dbscontent.textContent;
-  }
+  
 
   if (checkInDate && checkOutDate && checkInFormatted && checkOutFormatted) {
     for (var i = 0; i < checkInDate.length; i++) {

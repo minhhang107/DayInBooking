@@ -30,13 +30,11 @@ router.get("/room-details", function (req, res) {
 });
 
 router.get("/room-details/:roomID", function (req, res) {
-  console.log(req.session);
   roomModel
     .findById(req.params.roomID)
     .lean()
     .exec()
     .then((room) => {
-      console.log(req.session.user);
       res.render("room-details", { room: room, user: req.session.user });
     });
 });
