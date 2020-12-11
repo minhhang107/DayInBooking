@@ -12,32 +12,26 @@
           <input type="hidden" name="roomID" value="{{room._id}}" />
           <input type="hidden" name="image" value="{{room.image}}" />
           <input class="form-control" type="text" id="listTitle" name="listTitle" value='{{room.title}}' />
+          <small></small>
         </div>
+        <div class="list-cont">
+          <div class="head3">What kind of place do you have?</div>
+          <div class="form-group form-group-upload">
+            <label>What is the type of your property?</label><br />
+            <select class="form-control" id="listType" name="listType" value="{{room.type}}">
+              <option value="" disabled selected>Select the type of your place</option>
+              <option value="Entire place">Entire place</option>
+              <option value="Private room">Private room</option>
+              <option value="Shared room">Shared room</option>
+            </select>
+            <small></small>
+          </div>
 
-        <div class="head3">What kind of place do you have?</div>
-        <div class="form-group form-group-upload">
-          <label>What is the type of your property?</label><br />
-          <select class="form-control" id="listType" name="listType" value="{{room.type}}">
-            <option value="Entire place">Entire place</option>
-            <option value="Private room">Private room</option>
-            <option value="Shared room">Shared room</option>
-          </select>
-        </div>
-
-        <div class="form-group form-group-upload">
-          <label for="list-no-of-guests">How many rooms are available at your place?</label><br />
-          <select class="form-control" id="listRoomNums" name="listRoomNums" value="{{room.roomNums}}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <div class="form-group form-group-upload">
+            <label for="list-no-of-guests">How many rooms are available at your place?</label><br />
+            <input type="number" class="form-control" id="listRoomNums" name="listRoomNums" value="{{room.roomNums}}" />
+            <small></small>
+          </div>
         </div>
 
         <div class="list-cont">
@@ -46,6 +40,7 @@
             <div class="form-group form-group-upload col">
               <label for="listStreet">Street address</label>
               <input class="form-control" type="text" id="listStreet" name="listStreet" value="{{room.address}}" />
+              <small></small>
             </div>
             <div class="form-group form-group-upload col">
 
@@ -60,17 +55,20 @@
                 <option value="Quebec">Quebec</option>
                 <option value="Vancouver">Vancouver</option>
               </datalist>
+              <small></small>
             </div>
           </div>
           <div class="row">
             <div class="form-group form-group-upload col">
               <label for="listState">State</label>
               <input class="form-control" type="text" id="listState" name="listState" value="{{room.state}}" />
+              <small></small>
             </div>
             <div class="form-group form-group-upload col">
               <label for="listPostalCode">Postal code</label>
               <input class="form-control" type="text" id="listPostalCode" name="listPostalCode"
                 value="{{room.postalCode}}" />
+              <small></small>
             </div>
           </div>
         </div>
@@ -81,7 +79,9 @@
             <p>
               Let visitors know more about your place
             </p>
-            <textarea class="form-control textarea" id="listDescription" name="listDescription">{{room.description}}</textarea>
+            <textarea class="form-control textarea" id="listDescription"
+              name="listDescription">{{room.description}}</textarea>
+            <small></small>
           </div>
         </div>
 
@@ -90,16 +90,18 @@
             What is the price for one night at your place?
           </div>
           <input class="form-control" type="text" id="listPrice" name="listPrice" value="{{room.price}}" />
+          <small></small>
         </div>
 
         <div class="list-cont">
           <div class="list-photos head3">Upload photo of your place</div>
-          <input class="upload-photo-button" name="photo" type="file">
+          <input class="upload-photo-button" name="photo" id="listPhoto" type="file">
+          <small></small>
         </div>
       </div>
 
       {{#if room.image}}
-      <div class="side-photo col-lg-6">
+      <div class="room-photo col-lg-6">
         <img src="/photos/{{room.image}}" />
         <span><a id="delete-button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{room._id}}">
             Delete photo </a></span>
@@ -121,6 +123,7 @@
   {{/if}} --}}
   {{!-- </div> --}}
 </div>
+
 
 <div class="modal fade" id="deleteModal{{room._id}}" role="dialog">
   <div class="modal-dialog" role="dialog">

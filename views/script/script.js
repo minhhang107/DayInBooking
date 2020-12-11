@@ -1,4 +1,4 @@
-window.onload =  () =>{
+window.onload = () => {
   const emailRegex = /^[a-zA-Z0-9_.-]+@[a-zA-Z-]+\.[a-zA-Z]{2,3}$/;
   const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
 
@@ -18,8 +18,10 @@ window.onload =  () =>{
   const checkOutDate = document.querySelectorAll(".checkOutDate");
   const nums = document.querySelectorAll(".nums");
   const s = document.querySelectorAll(".s");
-  const uploadForm = document.querySelector("#list-room-form-1");
+  const uploadForm = document.querySelector("#list-room-form");
   const title = document.getElementById("listTitle");
+  const type = document.getElementById("listType");
+  const roomNums = document.getElementById("listRoomNums");
   const street = document.getElementById("listStreet");
   const city = document.getElementById("listCity");
   const state = document.getElementById("listState");
@@ -33,6 +35,7 @@ window.onload =  () =>{
   const searchForm = document.getElementById("search-form");
   const paymentForm = document.getElementById("payment-form");
   const confirmModal = document.getElementById("confirmModal");
+  const roomPhoto = document.querySelector(".room-photo");
   tinymce.init({
     selector: "#listDescription",
     height: 300,
@@ -70,6 +73,14 @@ window.onload =  () =>{
 
   if (uploadForm) {
     uploadForm.addEventListener("submit", (e) => {
+      if (!validateUpload()) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  if (uploadForm) {
+    uploadForm.addEventListener("submit", (e) => {
       const listDescriptionContent = document.getElementById(
         "listDescriptionContent"
       );
@@ -82,23 +93,24 @@ window.onload =  () =>{
 
   if (reserveForm) {
     reserveForm.addEventListener("submit", (e) => {
-      if (!validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value)) e.preventDefault();
+      if (!validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value))
+        e.preventDefault();
     });
   }
 
   if (paymentForm) {
     paymentForm.addEventListener("submit", (e) => {
-      if (!validateDate(paymentForm.checkIn.value, paymentForm.checkOut.value)) e.preventDefault();
+      if (!validateDate(paymentForm.checkIn.value, paymentForm.checkOut.value))
+        e.preventDefault();
     });
   }
 
   if (searchForm) {
     searchForm.addEventListener("submit", (e) => {
-      if (!validateDate(searchForm.checkIn.value, searchForm.checkOut.value)) e.preventDefault();
+      if (!validateDate(searchForm.checkIn.value, searchForm.checkOut.value))
+        e.preventDefault();
     });
   }
-
-  
 
   if (checkInDate && checkOutDate && checkInFormatted && checkOutFormatted) {
     for (var i = 0; i < checkInDate.length; i++) {
@@ -116,14 +128,12 @@ window.onload =  () =>{
     paymentForm.checkOut.addEventListener("change", update_price);
   }
 
-  if (reserveForm ){
-    reserveForm.checkIn.addEventListener("change", (e)=>{validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value)});
-    reserveForm.checkOut.addEventListener("change", (e)=>{validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value)});
-  }
-
-  if (uploadForm) {
-    uploadForm.addEventListener("submit", (e) => {
-      if (!validateUpload()) e.preventDefault();
+  if (reserveForm) {
+    reserveForm.checkIn.addEventListener("change", (e) => {
+      validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value);
+    });
+    reserveForm.checkOut.addEventListener("change", (e) => {
+      validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value);
     });
   }
 
@@ -141,7 +151,7 @@ window.onload =  () =>{
     });
   }
 
-   function days_between(date1, date2) {
+  function days_between(date1, date2) {
     const milliseconds_a_day = 1000 * 60 * 60 * 24;
     const milliseconds_between = Math.abs(new Date(date1) - new Date(date2));
     return Math.round(milliseconds_between / milliseconds_a_day);
@@ -165,18 +175,18 @@ window.onload =  () =>{
         paymentForm.checkIn.value,
         paymentForm.checkOut.value
       );
-      paymentForm.totalPrice.value = paymentForm.roomPrice.value * paymentForm.totalDays.value;
+      paymentForm.totalPrice.value =
+        paymentForm.roomPrice.value * paymentForm.totalDays.value;
       total.innerHTML = "$" + paymentForm.totalPrice.value;
     } else {
       total.innerHTML = "Not available";
     }
   }
 
-  function validateDate(checkIn, checkOut){
+  function validateDate(checkIn, checkOut) {
     const dateError = document.getElementById("date-error");
     var validated = true;
 
-    console.log(checkOut.value);
     if (new Date(checkIn) < new Date()) {
       dateError.innerHTML =
         "Check in date has already passed. Please choose another date.";
@@ -186,8 +196,7 @@ window.onload =  () =>{
         dateError.innerHTML =
           "Check out date has already passed. Please choose another date.";
         validated = false;
-      }
-      else{
+      } else {
         if (checkOut !== null && checkIn >= checkOut) {
           dateError.innerHTML =
             "Check out date must be after check in date. Please choose another date.";
@@ -281,46 +290,92 @@ window.onload =  () =>{
 
   function validateUpload() {
     var validated = true;
+    var firstError;
 
     if (title.value === "") {
       setError(title, "Title cannot be blank.");
+      firstError = title.parentElement;
       validated = false;
     } else setDefault(title);
 
+    if (type.value === "") {
+      setError(type, "Type of place cannot be blank.");
+      if (validated) {
+        firstError = type.parentElement;
+        validated = false;
+      }
+    } else setDefault(type);
+
+    if (roomNums.value === "") {
+      setError(roomNums, "Numbers of rooms cannot be blank.");
+      if (validated) {
+        firstError = roomNums.parentElement;
+        validated = false;
+      }
+    } else setDefault(roomNums);
+
     if (street.value === "") {
       setError(street, "Address cannot be blank.");
-      validated = false;
+      if (validated) {
+        firstError = street.parentElement;
+        validated = false;
+      }
     } else setDefault(street);
 
     if (city.value === "") {
       setError(city, "City cannot be blank.");
-      validated = false;
+      if (validated) {
+        firstError = city,parentElement;
+        validated = false;
+      }
     } else setDefault(city);
 
     if (state.value === "") {
       setError(state, "State cannot be blank.");
-      validated = false;
+      if (validated) {
+        firstError = state.parentElement;
+        validated = false;
+      }
     } else setDefault(state);
 
     if (postalCode.value === "") {
       setError(postalCode, "Postal code cannot be blank.");
-      validated = false;
+      if (validated) {
+        firstError = postalCode.parentElement;
+        validated = false;
+      }
     } else setDefault(postalCode);
 
     if (description.value === "") {
       setError(description, "Description cannot be blank.");
-      validated = false;
+      if (validated) {
+        firstError = description.parentElement;
+        validated = false;
+      }
     } else setDefault(description);
 
     if (price.value === "") {
       setError(price, "Price cannot be blank.");
-      validated = false;
+      if (validated) {
+        firstError = price.parentElement;
+        validated = false;
+      }
     } else setDefault(price);
 
-    if (photo.value === "") {
-      setError(photo, "You must upload a photo for your place.");
-      validated = false;
-    } else setDefault(photo);
+    if(!roomPhoto){
+      if (photo.value === "") {
+        setError(photo, "You must upload a photo for your place.");
+        if (validated) {
+          firstError = photo.parentElement;
+          validated = false;
+        }
+      } else setDefault(photo);
+    }
+    
+
+    if (!validated)
+      firstError.scrollIntoView(false);
+
     return validated;
   }
 

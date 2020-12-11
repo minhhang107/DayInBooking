@@ -2,57 +2,48 @@
   <div class="head1">Edit your room</div>
   <div class="row">
     <div class="list-room-info col-md-6">
-      <form action="/room-details" method="POST" enctype="multipart/form-data" id="list-room-form-1">
-<div id="errors">
+      <form action="/room-details" method="POST" enctype="multipart/form-data" id="list-room-form">
+        <div id="errors">
 
-</div>
+        </div>
 
         <div class="list-cont">
           <div class="listTitle head3">
             Choose a title for your place
           </div>
-          <input class="form-control" type="text" id="listTitle" name="listTitle"/>
+          <input class="form-control" type="text" id="listTitle" name="listTitle" />
           <small></small>
         </div>
-        <div class="head3">What kind of place do you have?</div>
-        <div class="form-group form-group-upload">
-          <label>What is the type of your property?</label><br />
-          <select class="form-control" id="listType" name="listType">
-            <option value="Entire place">Entire place</option>
-            <option value="Private room">Private room</option>
-            <option value="Shared room">Shared room</option>
-          </select>
-        </div>
-
-        <div class="form-group form-group-upload">
-            <label for="list-no-of-guests"
-              >How many rooms are available at your place?</label
-            ><br />
-            <select class="form-control" id="listRoomNums" name="listRoomNums">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
+        <div class="list-cont">
+          <div class="head3">What kind of place do you have?</div>
+          <div class="form-group form-group-upload">
+            <label>What is the type of your property?</label><br />
+            <select class="form-control" id="listType" name="listType">
+              <option value="" disabled selected>Select the type of your place</option>
+              <option value="Entire place">Entire place</option>
+              <option value="Private room">Private room</option>
+              <option value="Shared room">Shared room</option>
             </select>
-            </div>
+            <small></small>
+          </div>
 
+          <div class="form-group form-group-upload">
+            <label for="list-no-of-guests">How many rooms are available at your place?</label><br />
+            <input type="number" class="form-control" id="listRoomNums" name="listRoomNums" />
+            <small></small>
+          </div>
+        </div>
         <div class="list-cont">
           <div class="head3">Where's your place located?</div>
           <div class="row">
             <div class="form-group form-group-upload col">
               <label for="listStreet">Street address</label>
-              <input class="form-control" type="text" id="listStreet" name="listStreet"/>
-                <small></small>
+              <input class="form-control" type="text" id="listStreet" name="listStreet" />
+              <small></small>
             </div>
             <div class="form-group form-group-upload col">
               <label for="listCity">City</label>
-              <input class="form-control" type="text" list="City" id="listCity" name="listCity"/>
+              <input class="form-control" type="text" list="City" id="listCity" name="listCity" />
               <datalist id="City">
                 <option value="Calgary">Calgary</option>
                 <option value="Hamilton">Hamilton</option>
@@ -62,19 +53,19 @@
                 <option value="Quebec">Quebec</option>
                 <option value="Vancouver">Vancouver</option>
               </datalist>
-                <small></small>
+              <small></small>
             </div>
           </div>
           <div class="row">
             <div class="form-group form-group-upload col">
               <label for="listState">State</label>
-              <input class="form-control" type="text" id="listState" name="listState"/>
-                <small></small>
+              <input class="form-control" type="text" id="listState" name="listState" />
+              <small></small>
             </div>
             <div class="form-group form-group-upload col">
               <label for="listPostalCode">Postal code</label>
-              <input class="form-control" type="text" id="listPostalCode" name="listPostalCode"/>
-                <small></small>
+              <input class="form-control" type="text" id="listPostalCode" name="listPostalCode" />
+              <small></small>
             </div>
           </div>
         </div>
@@ -86,7 +77,7 @@
               Let visitors know more about your place
             </p>
             <textarea class="form-control textarea" id="listDescription" name="listDescription"></textarea>
-            <input type="hidden" id="listDescriptionContent" name="listDescriptionContent"/>
+            <input type="hidden" id="listDescriptionContent" name="listDescriptionContent" />
             <small></small>
           </div>
         </div>
@@ -95,7 +86,7 @@
           <div class="listPrice head3">
             What is the price for one night at your place?
           </div>
-          <input class="form-control" type="text" id="listPrice" name="listPrice"/>
+          <input class="form-control" type="text" id="listPrice" name="listPrice" />
           <small></small>
         </div>
 
@@ -103,14 +94,14 @@
           <div class="list-photos head3">Upload photo of your place</div>
 
           <input class="upload-photo-button" name="photo" id="listPhoto" type="file">
-         <small></small>
+          <small></small>
         </div>
         {{!-- <div class="custom-file" id="list-photo-cont">
             <input type="file" class="custom-file-input" id="list-room-photo" name="photo"/>
             <label class="custom-file-label" for="list-room-photo" >{{room.image}}</label>
           </div> --}}
 
- 
+
 
 
 
@@ -124,3 +115,4 @@
     </div>
   </div>
 </div>
+
