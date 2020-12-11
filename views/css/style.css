@@ -1141,9 +1141,10 @@ footer{
 }
 
 .confirm-delete-message{
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 20px;
     text-align: center;
+    font-weight:400;
 }
 
 .admin-button{

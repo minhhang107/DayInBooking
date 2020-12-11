@@ -15,9 +15,6 @@
       {{#if rooms}}
       <div class="list">List of Rooms</div>
       <div class="rooms">
-        {{#if deletedRoom}}
-        <div><span style="color:2ecc71"><i>{{deletedRoom}}</i></span> was removed successfully.</div>
-        {{/if}}
         {{#each rooms}}
         <div class="room row">
           <div class="room-photo-cont col-sm-3">
@@ -81,11 +78,6 @@
 <div class="modal fade" id="confirmModal" role="dialog">
   <div class="modal-dialog" role="dialog">
     <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body log-in-body">
         <div class="confirm-delete-message"><i>{{deletedRoom}}</i> was removed successfully.</div>
       </div>
