@@ -21,10 +21,11 @@ var transporter = nodemailer.createTransport({
 });
 
 var checkLogIn = function (req, res, next) {
+  var errors = [];
   if (!req.session.user){
+    errors.push("Unauthorized access. Please log in to continue.");
     res.render("log-in", {
-      error:
-        "Unauthorized access. Please log in to continue.",
+      errors: errors,
       user: req.session.user,
     });
   } else next();
@@ -177,7 +178,6 @@ router.post("/log-in", function (req, res) {
               .then((matched) => {
                 if (matched) {
                   //redirect to user/admin dashboard page and set up session
-                  console.log("user session saved here");
                   req.session.user = {
                     id: usr._id,
                     username: usr.username,

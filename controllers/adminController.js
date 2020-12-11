@@ -23,17 +23,18 @@ const STORAGE = multer.diskStorage({
 const UPLOAD = multer({ storage: STORAGE });
 
 var checkAdminLogIn = function (req, res, next) {
+  var errors = [];
   if (!req.session.user){
+    errors.push( "Unauthorized access. Please log in to continue.")
     res.render("log-in", {
-      error:
-        "Unauthorized access. Please log in to continue.",
+      errors: errors,
       user: req.session.user,
     });
   } else{
       if (!req.session.user.isAdmin){
+        errors.push("Unauthorized access, only admin can access this page. Please log in as an admin.");
         res.render("log-in", {
-          error:
-            "Unauthorized access, only admin can access this page. Please log in as an admin.",
+          errors: errors,
           user: req.session.user,
         });
       }   
