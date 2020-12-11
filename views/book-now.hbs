@@ -13,6 +13,7 @@
         <div class="room-reserve-cont">
           <div class="date-info reserve-form">
             <div class="room-price"><b>${{booking.roomPrice}}</b> / night</div>
+            
             <div class="check-in-cont">
               <label for="check-in">Check-in:</label><br />
               <input type="date" id="check-in" name="checkIn" min="2020-10-02" max="2022-01-01"
@@ -30,7 +31,9 @@
               <input type="number" min="1" name="guests" value="{{booking.guests}}" />
             </div>
             <div class="total-cont">
-              Total Price: $<span id="total">{{booking.totalPrice}}</span> CAD
+            <small id="date-error"></small>
+            <div>Total Price: <span id="total">${{booking.totalPrice}}</span></div>
+              
             </div>
             <input type="hidden" name="totalPrice" value="{{booking.totalPrice}}" />
             <input type="hidden" name="totalDays" value="{{booking.totalDays}}" />

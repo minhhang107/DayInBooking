@@ -12,7 +12,6 @@ const roomModel = require("../models/roomModel.js");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
-  // port: 587,
   ignoreTLS: false,
   secure: false,
   auth: {
@@ -22,11 +21,10 @@ var transporter = nodemailer.createTransport({
 });
 
 var checkLogIn = function (req, res, next) {
-  if (!req.session.user) {
-    var errors = [];
-    errors.push("Unauthorized access, please log in to continue.");
+  if (!req.session.user){
     res.render("log-in", {
-      errors: errors,
+      error:
+        "Unauthorized access. Please log in to continue.",
       user: req.session.user,
     });
   } else next();
@@ -179,6 +177,7 @@ router.post("/log-in", function (req, res) {
               .then((matched) => {
                 if (matched) {
                   //redirect to user/admin dashboard page and set up session
+                  console.log("user session saved here");
                   req.session.user = {
                     id: usr._id,
                     username: usr.username,
@@ -317,7 +316,7 @@ router.post("/confirm/:roomID", checkLogIn, function (req, res) {
     .exec()
     .then((err) => {
       // render confirm page
-      res.render("confirm", { user: req.session.user });
+      res.render("confirm", { title: newBooking.roomName, user: req.session.user });
 
       // send confirmation email
       var emailOptions = {
@@ -353,15 +352,7 @@ router.post("/confirm/:roomID", checkLogIn, function (req, res) {
     });
 });
 
-router.get("/room-details/:roomID", function (req, res) {
-  roomModel
-    .findById(req.params.roomID)
-    .lean()
-    .exec()
-    .then((room) => {
-      res.render("room-details", { room: room, user: req.session.user });
-    });
-});
+
 
 router.post("/search-results/", function (req, res) {
   roomModel

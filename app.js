@@ -24,8 +24,8 @@ function onHttpStart(){
 
 app.use(clientSessions({
     cookieName: "session",
-    secret: "Web322",
-    duration: 30*60*1000,
+    secret: process.env.SESSION_SECRET,
+    duration: 5*60*1000,
     activeDuration: 5*60*1000
 }))
 

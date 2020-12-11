@@ -1,75 +1,95 @@
 <div class="dash-background-cont"></div>
-<div class="main-admin-dashboard ">
-  <div class="top-bar">
-    <div class="greeting">Welcome, {{user.fname}} {{user.lname}}</div>
+  <div class="main-admin-dashboard ">
+    <div class="top-bar">
+      <div class="greeting">Welcome, {{user.fname}} {{user.lname}}</div>
 
-    <div class="greeting-buttons">
-      <span>
-        <button id="view-room-button" class="btn btn-dark">VIEW ROOMS</a></button>
-      </span>
-      <span>
-        <button id="create-room-button" class="btn btn-info"><a href="/upload-room">CREATE ROOM</a></button>
-      </span>
+      <div class="greeting-buttons">
+        <span>
+          <button id="create-room-button" class="btn btn-info"><a href="/upload-room">CREATE ROOM</a></button>
+        </span>
+      </div>
+
     </div>
 
+    <div id="rooms-list-container">
+      {{#if rooms}}
+      <div class="list">List of Rooms</div>
+      <div class="rooms">
+        {{#if deletedRoom}}
+        <div><span style="color:2ecc71"><i>{{deletedRoom}}</i></span> was removed successfully.</div>
+        {{/if}}
+        {{#each rooms}}
+        <div class="room row">
+          <div class="room-photo-cont col-sm-3">
+            <img src='/photos/{{this.image}}' alt="{{this.image}}">
+          </div>
+          <div class="room-details-cont col-sm-9">
+            <div class="button-cont row">
+              <div class="col-sm-7">
+                <a href="/room-details/{{this._id}}"><span class="title">{{this.title}}</span></a>
+              </div>
+              <div class="col-sm-5">
+                <span><a id="delete-button-{{this._id}}" class="btn btn-danger deleteButton" data-toggle="modal"
+                    data-target="#delete{{@index}}">
+                    Delete </a></span>
+                <span><a href='/edit-room/{{this._id}}' id="edit-button" class="btn btn-info"> Edit </a></span>
+
+              </div>
+            </div>
+
+            <div class="room-info-cont">
+              <div class="location">{{this.city}}, {{this.state}}</div>
+              <div class="type">{{this.type}}</span> - <span class="nums">{{this.roomNums}} </span><span
+                  class="s"></span>
+              </div>
+              {{!-- <div class="description-2">{{this.description}}
+            </div> --}}
+              <div class="price">${{this.price}}</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal fade" id="delete{{@index}}" role="dialog">
+          <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+              <div class="modal-body log-in-body">
+                <form action="/admin-dashboard" method="POST" enctype="application/x-www-form-urlencoded">
+                  <div class="confirm-delete-mes">Are you sure to delete?</div>
+                  <div class="confirm-delete-button">
+                    <input type="hidden" name="id" value="{{this._id}}" />
+                    <input type="hidden" name="title" value="{{this.title}}" />
+                    <input type="hidden" name="photo" value="{{this.image}}" />
+                    <input class="btn btn-light admin-button" data-backdrop="false" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-danger admin-button" value="Delete">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="list">There are no rooms uploaded yet.</div>
+        {{/if}}
+      </div>
+    </div>
   </div>
 
-  <div id="rooms-list-container">
-    {{#if rooms}}
-    <div class="list">List of Rooms</div>
-    <div class="rooms">
-      {{#each rooms}}
-      <div class="room row">
-        <div class="room-photo-cont col-sm-3">
-          <img src='/photos/{{this.image}}' alt="{{this.image}}">
-        </div>
-        <div class="room-details-cont col-sm-9">
-          <div class="button-cont row">
-            <div class="col-sm-7">
-              <a href="/room-details/{{this._id}}"><span class="title">{{this.title}}</span></a>
-            </div>
-            <div class="col-sm-5">
-              <span><a id="delete-button-{{this._id}}" class="btn btn-danger deleteButton" data-toggle="modal"
-                  data-target="#delete{{@index}}">
-                  Delete </a></span>
-              <span><a href='/edit-room/{{this._id}}' id="edit-button" class="btn btn-info"> Edit </a></span>
 
-            </div>
-          </div>
-
-          <div class="room-info-cont">
-            <div class="location">{{this.city}}, {{this.state}}</div>
-            <div class="type">{{this.type}}</span> - <span class="nums">{{this.roomNums}} </span><span class="s"></span>
-            </div>
-            {{!-- <div class="description-2">{{this.description}}
-            </div> --}}
-            <div class="price">${{this.price}}</div>
-          </div>
-
-        </div>
+{{#if deletedRoom}}
+<div class="modal fade" id="confirmModal" role="dialog">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-
-      <div class="modal fade" id="delete{{@index}}" role="dialog">
-        <div class="modal-dialog" role="dialog">
-          <div class="modal-content">
-            <div class="modal-body log-in-body">
-              <form action="/admin-dashboard" method="POST" enctype="application/x-www-form-urlencoded">
-                <div class="confirm-delete-mes">Are you sure to delete?</div>
-                <div class="confirm-delete-button">
-                  <input type="hidden" name="id" value="{{this._id}}" />
-                  <input type="hidden" name="photo" value="{{this.image}}" />
-                  <input class="btn btn-light admin-button" data-backdrop="false" data-dismiss="modal" value="Cancel">
-                  <input type="submit" class="btn btn-danger admin-button" value="Delete">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+      <div class="modal-body log-in-body">
+        <div class="confirm-delete-message">was removed successfully.</div>
       </div>
-      {{/each}}
-      {{else}}
-      <div class="list">There are no rooms uploaded yet.</div>
-      {{/if}}
     </div>
   </div>
 </div>
+{{/if}}

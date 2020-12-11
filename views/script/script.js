@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload =  () =>{
   const emailRegex = /^[a-zA-Z0-9_.-]+@[a-zA-Z-]+\.[a-zA-Z]{2,3}$/;
   const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
 
@@ -11,9 +11,6 @@ window.onload = function () {
   const pwd = document.querySelector("#pwd");
   const username = document.querySelector("#username");
   const password = document.querySelector("#password");
-  const viewRoomButton = document.querySelector("#view-room-button");
-  const roomsCont = document.querySelector("#rooms-list-container");
-  var form = document.querySelector("#payment-form");
   var total = document.querySelector("#total");
   var checkInFormatted = document.querySelectorAll(".checkInFormatted");
   var checkOutFormatted = document.querySelectorAll(".checkOutFormatted");
@@ -32,40 +29,31 @@ window.onload = function () {
   const photo = document.getElementById("listPhoto");
   const dbscontent = document.getElementById("content");
   const desc = document.getElementById("room-description");
-  const reserveForm = document.querySelector("#reserve-form");
-  const checkIn = document.getElementById("check-in");
-  const checkOut = document.getElementById("check-out");
+  var reserveForm = document.querySelector("#reserve-form");
   const searchForm = document.getElementById("search-form");
-
+  const paymentForm = document.getElementById("payment-form");
+  
   tinymce.init({
     selector: "#listDescription",
     height: 300,
     content_style: "body { font-family: Tajawal; }",
-    menubar: true,
+    menubar: false,
     plugins: "paste",
-    toolbar: 'undo redo | ' +
-  'bold italic | alignleft aligncenter ' +
-  'alignright alignjustify | bullist numlist outdent indent | ' +
-  'removeformat | help',
+    toolbar:
+      "undo redo | " +
+      "bold italic | alignleft aligncenter " +
+      "alignright alignjustify | bullist numlist outdent indent | " +
+      "removeformat | help",
     paste_as_text: true,
   });
 
-  if (searchForm){
-    searchForm.addEventListener("submit", (e)=>{
-      if(!validateSearch()) e.preventDefault();
-    })
-  }
+  document.querySelector('[data-target="#confirmModal"]').click();
 
-function validateSearch(){
-  var validated = true;
-  const cityName = document.getElementById("cityName");
-  if (cityName.value === "")
-  {
-    setError(cityName, "Please choose a city");
-    validated = false;
-  } else setDefault(cityName);
-  return validated;
-}
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+      if (!validateSearch()) e.preventDefault();
+    });
+  }
 
   if (nums && s) {
     for (var i = 0; i < nums.length; i++) {
@@ -75,23 +63,39 @@ function validateSearch(){
     }
   }
 
-  if (uploadForm){
-  uploadForm.addEventListener("submit", (e)=>{
-    const  listDescriptionContent = document.getElementById("listDescriptionContent");
-    if (listDescriptionContent){
-      var tinyContent = tinyMCE.activeEditor.getContent();
-    console.log(tinyContent);
-    listDescriptionContent.value = tinyContent;
-    }
-  });
+  if (uploadForm) {
+    uploadForm.addEventListener("submit", (e) => {
+      const listDescriptionContent = document.getElementById(
+        "listDescriptionContent"
+      );
+      if (listDescriptionContent) {
+        var tinyContent = tinyMCE.activeEditor.getContent();
+        listDescriptionContent.value = tinyContent;
+      }
+    });
   }
-  
+
+  if (reserveForm) {
+    reserveForm.addEventListener("submit", (e) => {
+      if (!validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value)) e.preventDefault();
+    });
+  }
+
+  if (paymentForm) {
+    paymentForm.addEventListener("submit", (e) => {
+      if (!validateDate(paymentForm.checkIn.value, paymentForm.checkOut.value)) e.preventDefault();
+    });
+  }
+
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+      if (!validateDate(searchForm.checkIn.value, searchForm.checkOut.value)) e.preventDefault();
+    });
+  }
 
   if (desc && dbscontent) {
-    console.log(dbscontent);
     desc.innerHTML = dbscontent.textContent;
   }
-  
 
   if (checkInDate && checkOutDate && checkInFormatted && checkOutFormatted) {
     for (var i = 0; i < checkInDate.length; i++) {
@@ -104,32 +108,20 @@ function validateSearch(){
     }
   }
 
-  if (form && total) {
-    form.checkIn.addEventListener("change", update_price);
-    form.checkOut.addEventListener("change", update_price);
-    form.checkOut.addEventListener("change", ()=>{
-      if (form.checkIn.value > form.checkOut.value){
-        
-      }
-    })
+  if (paymentForm) {
+    paymentForm.checkIn.addEventListener("change", update_price);
+    paymentForm.checkOut.addEventListener("change", update_price);
   }
 
-  if (viewRoomButton) {
-    viewRoomButton.addEventListener("click", (e) => {
-      roomsCont.style.display = "block";
-    });
+  if (reserveForm ){
+    reserveForm.checkIn.addEventListener("change", (e)=>{validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value)});
+    reserveForm.checkOut.addEventListener("change", (e)=>{validateDate(reserveForm.checkIn.value, reserveForm.checkOut.value)});
   }
 
   if (uploadForm) {
     uploadForm.addEventListener("submit", (e) => {
       if (!validateUpload()) e.preventDefault();
     });
-  }
-
-  if (reserveForm){
-    reserveForm.addEventListener("submit", (e)=>{
-      if (!validateReserve()) e.preventDefault();
-    })
   }
 
   // validate log in information
@@ -146,6 +138,12 @@ function validateSearch(){
     });
   }
 
+   function days_between(date1, date2) {
+    const milliseconds_a_day = 1000 * 60 * 60 * 24;
+    const milliseconds_between = Math.abs(new Date(date1) - new Date(date2));
+    return Math.round(milliseconds_between / milliseconds_a_day);
+  }
+
   function display_date(date) {
     console.log(date);
     var year = date.getUTCFullYear();
@@ -159,18 +157,52 @@ function validateSearch(){
   }
 
   function update_price() {
-    form.totalDays.value = days_between(
-      form.checkIn.value,
-      form.checkOut.value
-    );
-    form.totalPrice.value = form.roomPrice.value * form.totalDays.value;
-    total.innerHTML = form.totalPrice.value;
+    if (validateDate(paymentForm.checkIn.value, paymentForm.checkOut.value)) {
+      paymentForm.totalDays.value = days_between(
+        paymentForm.checkIn.value,
+        paymentForm.checkOut.value
+      );
+      paymentForm.totalPrice.value = paymentForm.roomPrice.value * paymentForm.totalDays.value;
+      total.innerHTML = "$" + paymentForm.totalPrice.value;
+    } else {
+      total.innerHTML = "Not available";
+    }
   }
 
-  function days_between(date1, date2) {
-    const milliseconds_a_day = 1000 * 60 * 60 * 24;
-    const milliseconds_between = Math.abs(new Date(date1) - new Date(date2));
-    return Math.round(milliseconds_between / milliseconds_a_day);
+  function validateDate(checkIn, checkOut){
+    const dateError = document.getElementById("date-error");
+    var validated = true;
+
+    console.log(checkOut.value);
+    if (new Date(checkIn) < new Date()) {
+      dateError.innerHTML =
+        "Check in date has already passed. Please choose another date.";
+      validated = false;
+    } else {
+      if (new Date(checkOut) < new Date()) {
+        dateError.innerHTML =
+          "Check out date has already passed. Please choose another date.";
+        validated = false;
+      }
+      else{
+        if (checkOut !== null && checkIn >= checkOut) {
+          dateError.innerHTML =
+            "Check out date must be after check in date. Please choose another date.";
+          validated = false;
+        } else dateError.innerHTML = "";
+      }
+    }
+    return validated;
+  }
+
+  function validateSearch() {
+    var validated = true;
+    const cityName = document.getElementById("cityName");
+    if (cityName.value === "") {
+      setError(cityName, "Please choose a city");
+      validated = false;
+    } else setDefault(cityName);
+    return validated;
   }
 
   function validateLogInForm() {
@@ -286,26 +318,6 @@ function validateSearch(){
       setError(photo, "You must upload a photo for your place.");
       validated = false;
     } else setDefault(photo);
-    return validated;
-  }
-
-  function validateReserve(){
-    var validated = true;
-    if (checkIn.value === "" ){
-      setError(checkIn, "Please enter the check in date.");
-      validated = false;
-    }else setDefault(checkIn);
-
-    if (checkOut.value === ""){
-      setError(checkOut, "Please enter the check out date.");
-      validated = false;
-    } else setDefault(checkOut);
-
-    if ((new Date(checkOut.value) - new Date(checkIn.value)) < 0){
-      setError(checkOut, "Check out date must be after check in date.");
-      validated = false;
-    } else setDefault(checkOut);
-
     return validated;
   }
 

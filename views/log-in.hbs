@@ -2,9 +2,9 @@
     <div class="log-in-form-container ">
         <div class="title">LOG IN</div>
         <form action="/log-in" method="POST" enctype="application/x-www-form-urlencoded" class="log-in-form">
-            {{#each errors}}
-            <small class="server-side-error">{{this}}</small><br>
-            {{/each}}
+            {{#if error}}
+            <small class="server-side-error">{{error}}</small><br>
+            {{/if}}
             <div class="form-group">
 
                 <input class="form-control" type="text" id="username" name="username" placeholder="Username" />

@@ -657,6 +657,11 @@ footer{
     margin-bottom: 20px;
 }
 
+#date-error{
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
 .reserve-form input{
     width: 100%;
     margin:0px 0;
@@ -689,7 +694,6 @@ footer{
     width: 80%;
     margin: 20px 10%;
     padding: 0;
-    background-color: antiquewhite;
 }
 
 #reserve-button{
@@ -1055,7 +1059,7 @@ footer{
 #rooms-list-container{
     position: relative;
     margin-top: 50px;
-    display: none;
+    /* display: none; */
 }
 
 .main-admin-dashboard a:hover{
@@ -1114,10 +1118,17 @@ footer{
 }
 
 .confirm-delete-mes{
-    font-size: 1.3em;
+    margin-top: 10px;
+    font-size: 1.2em;
 }
 
 .confirm-delete-mes, .confirm-delete-button{
+    text-align: center;
+}
+
+.confirm-delete-message{
+    font-size: 1.2em;
+    margin-bottom: 20px;
     text-align: center;
 }
 

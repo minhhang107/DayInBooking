@@ -216,6 +216,7 @@ router.post("/edit-room/:roomID", checkAdminLogIn, (req, res) => {
 
 router.post("/admin-dashboard", checkAdminLogIn, (req, res) => {
   const roomID = req.body.id;
+  const roomName = req.body.title;
   const filename = req.body.photo;
   
         //unlink photo from folder
@@ -240,13 +241,14 @@ router.post("/admin-dashboard", checkAdminLogIn, (req, res) => {
         .exec()
         .then((rooms) => {
           res.render("admin-dashboard", {
+            deletedRoom: roomName,
             rooms: rooms,
             user: req.session.user,
           });
         });
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`An error occurs while deleting room: ${err}`);
       res.render("admin-dashboard", { user: req.session.user });
     });
 });
