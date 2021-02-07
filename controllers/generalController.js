@@ -7,7 +7,18 @@ router.get("/", function (req, res) {
 });
 
 router.get("/search-result", function (req, res) {
-  res.render("search-result", { user: req.session.user });
+  // res.render("search-results", { user: req.session.user });
+  roomModel
+      .find()
+      .lean()
+      .exec()
+      .then((rooms) => {
+          res.render("search-results", {
+            rooms: rooms,
+            city: req.body.city,
+            user: req.session.user,
+          });
+        })
 });
 
 router.post("/search-result", (req, res) => {

@@ -125,11 +125,7 @@ router.get("/edit-room/:roomID", checkAdminLogIn, (req, res) => {
     });
 });
 
-router.post(
-  "/room-details/:roomID",
-  checkAdminLogIn,
-  UPLOAD.single("photo"),
-  (req, res) => {
+router.post(  "/room-details/:roomID",  checkAdminLogIn,  UPLOAD.single("photo"),  (req, res) => {
     var photo = "";
     const title = req.body.listTitle;
     const type = req.body.listType;
@@ -140,6 +136,7 @@ router.post(
     const state = req.body.listState;
     const postalCode = req.body.listPostalCode;
     const price = req.body.listPrice;
+    
     if (req.file) {
       photo = req.file.filename;
     } else photo = req.body.image;
