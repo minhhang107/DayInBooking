@@ -1,6 +1,6 @@
 # DayIn
 
-View the deployed app here: <a href="https://sheltered-pla53659.herokuapp.com">https://sheltered-pla53659.herokuapp.com</a>
+View the deployed app here: https://sheltered-pla53659.herokuapp.com
 
 ![](./public/logo.jpg?raw=true)
 
