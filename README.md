@@ -1,6 +1,6 @@
 # DayIn
 
-View the deployed app here: https://sheltered-pla53659.herokuapp.com
+View the deployed app here: https://sheltered-plateau-53659.herokuapp.com/
 
 ![](./public/logo.jpg?raw=true)
 
